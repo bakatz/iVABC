@@ -15,14 +15,13 @@
 		B536C74F1830D7A8002EA15B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B536C74E1830D7A8002EA15B /* AppDelegate.m */; };
 		B536C7521830D7A8002EA15B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B536C7501830D7A8002EA15B /* Main_iPhone.storyboard */; };
 		B536C7551830D7A8002EA15B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B536C7531830D7A8002EA15B /* Main_iPad.storyboard */; };
-		B536C7581830D7A8002EA15B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B536C7571830D7A8002EA15B /* FirstViewController.m */; };
-		B536C75B1830D7A8002EA15B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B536C75A1830D7A8002EA15B /* SecondViewController.m */; };
 		B536C75D1830D7A8002EA15B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B536C75C1830D7A8002EA15B /* Images.xcassets */; };
 		B536C7641830D7A8002EA15B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B536C7631830D7A8002EA15B /* XCTest.framework */; };
 		B536C7651830D7A8002EA15B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B536C73E1830D7A8002EA15B /* Foundation.framework */; };
 		B536C7661830D7A8002EA15B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B536C7421830D7A8002EA15B /* UIKit.framework */; };
 		B536C76E1830D7A8002EA15B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B536C76C1830D7A8002EA15B /* InfoPlist.strings */; };
 		B536C7701830D7A8002EA15B /* VABCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B536C76F1830D7A8002EA15B /* VABCTests.m */; };
+		B55CF53C1830E3730078CD02 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55CF53B1830E3730078CD02 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,16 +47,13 @@
 		B536C74E1830D7A8002EA15B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B536C7511830D7A8002EA15B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		B536C7541830D7A8002EA15B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		B536C7561830D7A8002EA15B /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		B536C7571830D7A8002EA15B /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		B536C7591830D7A8002EA15B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		B536C75A1830D7A8002EA15B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		B536C75C1830D7A8002EA15B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B536C7621830D7A8002EA15B /* VABCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VABCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B536C7631830D7A8002EA15B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B536C76B1830D7A8002EA15B /* VABCTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VABCTests-Info.plist"; sourceTree = "<group>"; };
 		B536C76D1830D7A8002EA15B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B536C76F1830D7A8002EA15B /* VABCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VABCTests.m; sourceTree = "<group>"; };
+		B55CF53B1830E3730078CD02 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55CF53C1830E3730078CD02 /* MapKit.framework in Frameworks */,
 				B536C7411830D7A8002EA15B /* CoreGraphics.framework in Frameworks */,
 				B536C7431830D7A8002EA15B /* UIKit.framework in Frameworks */,
 				B536C73F1830D7A8002EA15B /* Foundation.framework in Frameworks */,
@@ -106,6 +103,7 @@
 		B536C73D1830D7A8002EA15B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B55CF53B1830E3730078CD02 /* MapKit.framework */,
 				B536C73E1830D7A8002EA15B /* Foundation.framework */,
 				B536C7401830D7A8002EA15B /* CoreGraphics.framework */,
 				B536C7421830D7A8002EA15B /* UIKit.framework */,
@@ -121,10 +119,6 @@
 				B536C74E1830D7A8002EA15B /* AppDelegate.m */,
 				B536C7501830D7A8002EA15B /* Main_iPhone.storyboard */,
 				B536C7531830D7A8002EA15B /* Main_iPad.storyboard */,
-				B536C7561830D7A8002EA15B /* FirstViewController.h */,
-				B536C7571830D7A8002EA15B /* FirstViewController.m */,
-				B536C7591830D7A8002EA15B /* SecondViewController.h */,
-				B536C75A1830D7A8002EA15B /* SecondViewController.m */,
 				B536C75C1830D7A8002EA15B /* Images.xcassets */,
 				B536C7451830D7A8002EA15B /* Supporting Files */,
 			);
@@ -261,9 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B536C75B1830D7A8002EA15B /* SecondViewController.m in Sources */,
 				B536C74F1830D7A8002EA15B /* AppDelegate.m in Sources */,
-				B536C7581830D7A8002EA15B /* FirstViewController.m in Sources */,
 				B536C74B1830D7A8002EA15B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +477,7 @@
 				B536C7751830D7A8002EA15B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B536C7761830D7A8002EA15B /* Build configuration list for PBXNativeTarget "VABCTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +486,7 @@
 				B536C7781830D7A8002EA15B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
