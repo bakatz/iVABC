@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rlV-xq-IyU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -96,10 +96,14 @@
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="knW-Id-QnL">
-                                <rect key="frame" x="0.0" y="480" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Filter" id="Y5t-Gx-u43"/>
+                                    <barButtonItem title="Filter" id="Y5t-Gx-u43">
+                                        <connections>
+                                            <segue destination="Bdx-is-M49" kind="push" id="J7n-Nb-cEd"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="JWf-QK-FOo"/>
                                     <barButtonItem title="Reload" id="uxm-br-RXC"/>
                                 </items>
@@ -107,13 +111,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="knW-Id-QnL" secondAttribute="trailing" id="DcT-W5-N1i"/>
-                            <constraint firstItem="knW-Id-QnL" firstAttribute="top" secondItem="rlV-xq-IyU" secondAttribute="bottom" id="RFK-R3-uOf"/>
-                            <constraint firstItem="knW-Id-QnL" firstAttribute="leading" secondItem="mBN-so-Ate" secondAttribute="leading" id="YZQ-ri-SFR"/>
-                            <constraint firstItem="rlV-xq-IyU" firstAttribute="trailing" secondItem="knW-Id-QnL" secondAttribute="trailing" id="awP-BZ-7FI"/>
-                            <constraint firstItem="rlV-xq-IyU" firstAttribute="leading" secondItem="knW-Id-QnL" secondAttribute="leading" id="bX3-lU-7fu"/>
-                            <constraint firstItem="2Vb-kD-dp4" firstAttribute="top" secondItem="knW-Id-QnL" secondAttribute="bottom" id="l8Z-Xp-hJ0"/>
-                            <constraint firstItem="rlV-xq-IyU" firstAttribute="top" secondItem="mBN-so-Ate" secondAttribute="top" id="mei-Fb-6IQ"/>
+                            <constraint firstAttribute="trailing" secondItem="knW-Id-QnL" secondAttribute="trailing" id="4Rb-Px-zup"/>
+                            <constraint firstItem="knW-Id-QnL" firstAttribute="trailing" secondItem="rlV-xq-IyU" secondAttribute="trailing" id="5Is-Xw-l63"/>
+                            <constraint firstItem="rlV-xq-IyU" firstAttribute="top" secondItem="mBN-so-Ate" secondAttribute="top" constant="44" id="6X6-XZ-7Ic"/>
+                            <constraint firstItem="rlV-xq-IyU" firstAttribute="leading" secondItem="knW-Id-QnL" secondAttribute="leading" id="VR7-Xm-pdp"/>
+                            <constraint firstAttribute="bottom" secondItem="rlV-xq-IyU" secondAttribute="bottom" id="ha9-lh-bsP"/>
+                            <constraint firstItem="rlV-xq-IyU" firstAttribute="leading" secondItem="mBN-so-Ate" secondAttribute="leading" id="hya-h6-aXN"/>
+                            <constraint firstItem="knW-Id-QnL" firstAttribute="top" secondItem="mA5-In-3mi" secondAttribute="bottom" id="ppc-Ce-VhO"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -123,6 +127,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMB-sZ-KLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1089" y="180"/>
+        </scene>
+        <!--View Controller - Filter-->
+        <scene sceneID="OCR-Ob-5sM">
+            <objects>
+                <viewController id="Bdx-is-M49" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UJu-qr-8Fr"/>
+                        <viewControllerLayoutGuide type="bottom" id="EcH-wJ-GhD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MXl-TO-q8V">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Filter" id="Nco-sc-IBg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXT-dw-oCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1571" y="180"/>
         </scene>
         <!--Navigation Controller - Drinks-->
         <scene sceneID="lZv-nU-cmw">
