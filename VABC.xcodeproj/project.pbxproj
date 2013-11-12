@@ -22,6 +22,9 @@
 		B536C76E1830D7A8002EA15B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B536C76C1830D7A8002EA15B /* InfoPlist.strings */; };
 		B536C7701830D7A8002EA15B /* VABCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B536C76F1830D7A8002EA15B /* VABCTests.m */; };
 		B55CF53C1830E3730078CD02 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55CF53B1830E3730078CD02 /* MapKit.framework */; };
+		B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D31831B03100AB0082 /* DrinksViewController.m */; };
+		B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D61831B04700AB0082 /* LocationsViewController.m */; };
+		B57584DA1831B05B00AB0082 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D91831B05B00AB0082 /* LocationDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,12 @@
 		B536C76D1830D7A8002EA15B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B536C76F1830D7A8002EA15B /* VABCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VABCTests.m; sourceTree = "<group>"; };
 		B55CF53B1830E3730078CD02 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B57584D21831B03100AB0082 /* DrinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinksViewController.h; sourceTree = "<group>"; };
+		B57584D31831B03100AB0082 /* DrinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinksViewController.m; sourceTree = "<group>"; };
+		B57584D51831B04700AB0082 /* LocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsViewController.h; sourceTree = "<group>"; };
+		B57584D61831B04700AB0082 /* LocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
+		B57584D81831B05B00AB0082 /* LocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailViewController.h; sourceTree = "<group>"; };
+		B57584D91831B05B00AB0082 /* LocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +130,12 @@
 				B536C7531830D7A8002EA15B /* Main_iPad.storyboard */,
 				B536C75C1830D7A8002EA15B /* Images.xcassets */,
 				B536C7451830D7A8002EA15B /* Supporting Files */,
+				B57584D21831B03100AB0082 /* DrinksViewController.h */,
+				B57584D31831B03100AB0082 /* DrinksViewController.m */,
+				B57584D51831B04700AB0082 /* LocationsViewController.h */,
+				B57584D61831B04700AB0082 /* LocationsViewController.m */,
+				B57584D81831B05B00AB0082 /* LocationDetailViewController.h */,
+				B57584D91831B05B00AB0082 /* LocationDetailViewController.m */,
 			);
 			path = VABC;
 			sourceTree = "<group>";
@@ -255,8 +270,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57584DA1831B05B00AB0082 /* LocationDetailViewController.m in Sources */,
 				B536C74F1830D7A8002EA15B /* AppDelegate.m in Sources */,
 				B536C74B1830D7A8002EA15B /* main.m in Sources */,
+				B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */,
+				B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
