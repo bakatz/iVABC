@@ -30,14 +30,18 @@
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
     [super viewDidLoad];
-    // http://bakatz.com/scripts/get_vabc_data.php?type=drinks&limit=100&sort=value_score
+    // http://bakatz.com/scripts/get_vabc_data.php?type=drinks&limit=100&sort=value_score&num_ml=&category=&name=
 
     self.responseData = [NSMutableData data];
+    [self requestDrinksData];
+	// Do any additional setup after loading the view.
+}
+
+- (void)requestDrinksData
+{
     NSURLRequest *request = [NSURLRequest requestWithURL:
     [NSURL URLWithString:@"http://bakatz.com/scripts/get_vabc_data.php?type=drinks&limit=100&sort=value_score"]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-	// Do any additional setup after loading the view.
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +127,7 @@
     self.drinksArray = res;
     
     [[self tblView] reloadData];
+    self.title = @"VABC Drinks";
     
 }
 
