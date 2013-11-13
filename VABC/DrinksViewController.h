@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DrinksViewController : UIViewController
+@interface DrinksViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, NSURLConnectionDataDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tblView;
 
 @end

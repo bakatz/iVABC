@@ -25,6 +25,7 @@
 		B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D31831B03100AB0082 /* DrinksViewController.m */; };
 		B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D61831B04700AB0082 /* LocationsViewController.m */; };
 		B57584DA1831B05B00AB0082 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D91831B05B00AB0082 /* LocationDetailViewController.m */; };
+		B57584DD1831EFFA00AB0082 /* DrinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584DC1831EFFA00AB0082 /* DrinkCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		B57584D61831B04700AB0082 /* LocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
 		B57584D81831B05B00AB0082 /* LocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailViewController.h; sourceTree = "<group>"; };
 		B57584D91831B05B00AB0082 /* LocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
+		B57584DB1831EFFA00AB0082 /* DrinkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkCell.h; sourceTree = "<group>"; };
+		B57584DC1831EFFA00AB0082 /* DrinkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				B57584D61831B04700AB0082 /* LocationsViewController.m */,
 				B57584D81831B05B00AB0082 /* LocationDetailViewController.h */,
 				B57584D91831B05B00AB0082 /* LocationDetailViewController.m */,
+				B57584DB1831EFFA00AB0082 /* DrinkCell.h */,
+				B57584DC1831EFFA00AB0082 /* DrinkCell.m */,
 			);
 			path = VABC;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				B536C74F1830D7A8002EA15B /* AppDelegate.m in Sources */,
 				B536C74B1830D7A8002EA15B /* main.m in Sources */,
 				B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */,
+				B57584DD1831EFFA00AB0082 /* DrinkCell.m in Sources */,
 				B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
