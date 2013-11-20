@@ -26,7 +26,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.mapView.showsUserLocation = YES;
+    [self.mapView.userLocation addObserver:self
+                                forKeyPath:@"location"
+                                   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                   context:NULL];
+    
+
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    static bool firstLoc = true;
+    if ([self.mapView showsUserLocation] && firstLoc) {
+        
+        MKCoordinateSpan span = MKCoordinateSpanMake(0, 360/pow(2, 13)*self.mapView.frame.size.width/256);
+        [[self mapView ]setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, span) animated:YES];
+        firstLoc = false;
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,4 +11,5 @@
 @interface DrinksViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tblView;
 
+- (void)requestDrinksData;
 @end
