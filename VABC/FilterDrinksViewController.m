@@ -11,11 +11,14 @@
 
 @interface FilterDrinksViewController ()
 @property NSDictionary *sortByDict;
+@property NSArray *sortByArray;
 @property NSDictionary *sizeDict;
+@property NSArray *sizeArray;
 @property NSArray *categoryArray;
 @end
 
 @implementation FilterDrinksViewController
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,14 +30,12 @@
 }
 
 - (IBAction)textFieldChanged:(UITextField *)sender {
-    NSLog(@"Changed this mofuggin text field");
+    [[self delegate] requestDrinksData :nil:nil:nil:[sender text]];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // DrinksViewController *dvc = (DrinksViewController *)[[[self parentViewController] parentViewController] parentViewController];
-    // doesn't work? [dvc requestDrinksData];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -48,8 +49,42 @@
 
 
     self.sortByDict = [pickerDataDict objectForKey:@"sortByDict"];
+    self.sortByArray = [[self sortByDict] keysSortedByValueUsingComparator:^(id first, id second) {
+        NSDictionary *firstDict = (NSDictionary *)first;
+        NSDictionary *secondDict = (NSDictionary *)second;
+        
+        NSInteger firstIdx = [[firstDict objectForKey:@"index"] integerValue];
+        NSInteger secondIdx = [[secondDict objectForKey:@"index"] integerValue];
+
+        if (firstIdx > secondIdx)
+            return (NSComparisonResult)NSOrderedDescending;
+        
+        if (firstIdx < secondIdx)
+            return (NSComparisonResult)NSOrderedAscending;
+        return (NSComparisonResult)NSOrderedSame;
+    }];
     
     self.sizeDict = [pickerDataDict objectForKey:@"sizeDict"];
+    self.sizeArray = [[self sizeDict] keysSortedByValueUsingComparator:^(id first, id second) {
+        if ([first integerValue] < [second integerValue])
+            return (NSComparisonResult)NSOrderedDescending;
+        
+        if ([first integerValue] > [second integerValue])
+            return (NSComparisonResult)NSOrderedAscending;
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+    [self setUpPickers];
+}
+
+- (void)setUpPickers {
+    
+    [self sortByPicker];
+    [self sizePicker];
+    [self categoryPicker];
+    
+    NSLog(@"Going to restore these values: name=%@ category=%@ size=%@ sortby=%@", self.drinkNameStr, self.categoryStr, self.sizeStr, self.sortByStr);
+    
 }
 
 - (void)dismissKeyboard {
@@ -69,15 +104,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
     if(pickerView == [self sortByPicker]) {
-        NSLog(@"sortBy changed!");
-        //[[self sortByArray] objectAtIndex:row];
+        NSString *key = [[self sortByArray] objectAtIndex:row];
+        NSDictionary *sortByDictData = [[self sortByDict] objectForKey:key];
+        NSString *internalID = [sortByDictData objectForKey:@"id"];
+        NSLog(@"sortBy changed to %@", internalID);
+        [[self delegate] requestDrinksData :internalID:nil:nil:nil];
+        //[[self drinksViewController] requestDrinksData];
     } else if (pickerView == [self sizePicker]) {
-        //[[self sizeArray] objectAtIndex:row];
-        NSLog(@"size changed!");
+        NSString *key = [[self sizeArray] objectAtIndex:row];
+        NSString *size = [[self sizeDict] objectForKey:key];
+        
+        // (All Sizes) case
+        if([size isEqualToString:@"9999"]) {
+            size = @"";
+        }
+        
+        NSLog(@"size changed to %@", size);
+        [[self delegate] requestDrinksData :nil:size:nil:nil];
     } else {
-        NSLog(@"category changed to %@", [[self categoryArray] objectAtIndex:row]);
+        NSString *category = [[[self categoryArray] objectAtIndex:row] lowercaseString];
+        NSLog(@"category changed to %@", category);
+        [[self delegate] requestDrinksData :nil:nil:category:nil];
     }
 }
 
@@ -105,17 +155,11 @@
     if (pickerView == [self sortByPicker]) {
         dataArray = [[self sortByDict] allKeys];
     } else if(pickerView == [self sizePicker]) {
-        dataArray = [[self sizeDict] keysSortedByValueUsingComparator:^(id first, id second) {
-            if ([first integerValue] < [second integerValue])
-                return (NSComparisonResult)NSOrderedDescending;
-            
-            if ([first integerValue] > [second integerValue])
-                return (NSComparisonResult)NSOrderedAscending;
-            return (NSComparisonResult)NSOrderedSame;
-        }];
+        dataArray = [self sizeArray];
     } else {
         dataArray = [self categoryArray];
     }
+    
     title = [@"" stringByAppendingFormat:@"%@", [dataArray objectAtIndex:row]];
     
     return title;

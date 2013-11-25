@@ -7,6 +7,7 @@
 //
 
 #import "DrinksViewController.h"
+#import "FilterDrinksViewController.h"
 #import "DrinkCell.h"
 
 @interface DrinksViewController ()
@@ -27,20 +28,49 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
-    [super viewDidLoad];
+    
+    self.sortVal = @"value_score";
+    self.numMLVal = @"";
+    self.categoryVal = @"";
+    self.nameVal = @"";
     // http://bakatz.com/scripts/get_vabc_data.php?type=drinks&limit=100&sort=value_score&num_ml=&category=&name=
 
     self.responseData = [NSMutableData data];
-    [self requestDrinksData];
+    [self requestDrinksData:@"value_score":nil:nil:nil];
 	// Do any additional setup after loading the view.
 }
 
-- (void)requestDrinksData
+- (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name;
 {
+    self.title = @"VABC Drinks - Loading ...";
+    
+    if(sort != nil) {
+        self.sortVal = sort;
+    }
+    
+    if(numML != nil) {
+        self.numMLVal = numML;
+    }
+    
+    if(category != nil) {
+        self.categoryVal = category;
+    }
+    
+    if(name != nil) {
+        self.nameVal = name;
+    }
+    
+    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&sort=%@&num_ml=%@&category=%@&name=%@", self.sortVal, self.numMLVal, self.categoryVal, self.nameVal];
+    
+    NSString *urlToSend = [NSString stringWithFormat:@"%@%@", @"http://bakatz.com/scripts/get_vabc_data.php?", [urlParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSLog(@"requestDrinksData - sending request: %@", urlToSend);
     NSURLRequest *request = [NSURLRequest requestWithURL:
-    [NSURL URLWithString:@"http://bakatz.com/scripts/get_vabc_data.php?type=drinks&limit=100&sort=value_score"]];
+    [NSURL URLWithString:urlToSend]];
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
@@ -54,7 +84,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;    //count of section
+    return 1;
 }
 
 
@@ -101,6 +131,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // TODO: implement if necessary
 }
+- (IBAction)reloadButtonClicked:(UIBarButtonItem *)sender {
+    NSLog(@"reloadButtonClicked");
+    [self requestDrinksData:nil :nil :nil :nil];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
@@ -129,6 +163,19 @@
     [[self tblView] reloadData];
     self.title = @"VABC Drinks";
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"GOT SEGUE!!");
+    
+    if ([[segue identifier] isEqual: @"FilterDrinksSegue"]) {
+        FilterDrinksViewController *fdvc = (FilterDrinksViewController *)[segue destinationViewController];
+        fdvc.sortByStr = self.sortVal;
+        fdvc.sizeStr = self.numMLVal;
+        fdvc.drinkNameStr = self.nameVal;
+        fdvc.categoryStr = self.categoryVal;
+        fdvc.delegate = self;
+    }
 }
 
 @end

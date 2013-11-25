@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterDrinksViewControllerDelegate.h"
 
-@interface DrinksViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, NSURLConnectionDataDelegate>
+@interface DrinksViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, NSURLConnectionDataDelegate,FilterDrinksViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tblView;
-
-- (void)requestDrinksData;
+@property NSString *sortVal;
+@property NSString *numMLVal;
+@property NSString *categoryVal;
+@property NSString *nameVal;
 @end

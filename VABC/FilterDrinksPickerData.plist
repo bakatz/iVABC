@@ -24,34 +24,69 @@
 	<key>sizeDict</key>
 	<dict>
 		<key>(All Sizes)</key>
-		<integer>9999</integer>
+		<string>9999</string>
 		<key>Handle (1.75L)</key>
-		<real>1750</real>
+		<string>1750</string>
 		<key>1L</key>
-		<integer>1000</integer>
+		<string>1000</string>
 		<key>Fifth (750mL)</key>
-		<integer>750</integer>
+		<string>750</string>
 		<key>375mL</key>
-		<integer>375</integer>
+		<string>375</string>
 		<key>50mL</key>
-		<integer>50</integer>
+		<string>50</string>
 	</dict>
 	<key>sortByDict</key>
 	<dict>
 		<key>Best Value</key>
-		<string>value_score</string>
+		<dict>
+			<key>index</key>
+			<integer>0</integer>
+			<key>id</key>
+			<string>value_score</string>
+		</dict>
 		<key>Price</key>
-		<string>price</string>
+		<dict>
+			<key>index</key>
+			<integer>1</integer>
+			<key>id</key>
+			<string>price</string>
+		</dict>
 		<key>Size</key>
-		<string>num_ml</string>
+		<dict>
+			<key>index</key>
+			<integer>2</integer>
+			<key>id</key>
+			<string>num_ml</string>
+		</dict>
 		<key>ABV</key>
-		<string>abv_pct</string>
+		<dict>
+			<key>index</key>
+			<integer>4</integer>
+			<key>id</key>
+			<string>abv_pct</string>
+		</dict>
 		<key>Category Name</key>
-		<string>category</string>
+		<dict>
+			<key>index</key>
+			<integer>3</integer>
+			<key>id</key>
+			<string>category</string>
+		</dict>
 		<key>Name</key>
-		<string>name</string>
+		<dict>
+			<key>index</key>
+			<integer>5</integer>
+			<key>id</key>
+			<string>name</string>
+		</dict>
 		<key>Age</key>
-		<string>age</string>
+		<dict>
+			<key>index</key>
+			<integer>6</integer>
+			<key>id</key>
+			<string>age</string>
+		</dict>
 	</dict>
 </dict>
 </plist>
