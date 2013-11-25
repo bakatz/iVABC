@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>categoryArray</key>
+	<array>
+		<string>(All Types)</string>
+		<string>Vodka</string>
+		<string>Tequila</string>
+		<string>Specialty</string>
+		<string>Bourbon</string>
+		<string>Scotch</string>
+		<string>Whiskey</string>
+		<string>Rum</string>
+		<string>Rock-Rye</string>
+		<string>Gin</string>
+		<string>Eggnog</string>
+		<string>Cognac</string>
+		<string>Cocktails</string>
+		<string>Brandy</string>
+		<string>Moonshine</string>
+		<string>Vermouth</string>
+	</array>
+	<key>sizeDict</key>
+	<dict>
+		<key>(All Sizes)</key>
+		<integer>9999</integer>
+		<key>Handle (1.75L)</key>
+		<real>1750</real>
+		<key>1L</key>
+		<integer>1000</integer>
+		<key>Fifth (750mL)</key>
+		<integer>750</integer>
+		<key>375mL</key>
+		<integer>375</integer>
+		<key>50mL</key>
+		<integer>50</integer>
+	</dict>
+	<key>sortByDict</key>
+	<dict>
+		<key>Best Value</key>
+		<string>value_score</string>
+		<key>Price</key>
+		<string>price</string>
+		<key>Size</key>
+		<string>num_ml</string>
+		<key>ABV</key>
+		<string>abv_pct</string>
+		<key>Category Name</key>
+		<string>category</string>
+		<key>Name</key>
+		<string>name</string>
+		<key>Age</key>
+		<string>age</string>
+	</dict>
+</dict>
+</plist>

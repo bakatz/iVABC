@@ -10,8 +10,8 @@
 #import "DrinksViewController.h"
 
 @interface FilterDrinksViewController ()
-@property NSArray *sortByArray;
-@property NSArray *sizeArray;
+@property NSDictionary *sortByDict;
+@property NSDictionary *sizeDict;
 @property NSArray *categoryArray;
 @end
 
@@ -40,10 +40,16 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [[self view] addGestureRecognizer:tap];
+    
+    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"FilterDrinksPickerData" ofType:@"plist"];
+    NSDictionary *pickerDataDict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    self.categoryArray = [pickerDataDict objectForKey:@"categoryArray"];
 
-    self.sortByArray = [NSArray arrayWithObjects:@"Best Value", @"Price", @"Size", @"ABV", @"Age", @"Name", @"Category Name", nil];
-    self.sizeArray = [NSArray arrayWithObjects:@"(All Sizes)", @"Handle (1.75L)", @"1L", @"Fifth (750mL)", @"375mL", @"50mL", nil];
-    self.categoryArray = [NSArray arrayWithObjects:@"(All Types)", @"Vodka", @"Tequila", @"Specialty", @"Bourbon", @"Scotch", @"Whiskey", @"Rum", @"Rock-Rye", @"Gin", @"Eggnog", @"Cognac", @"Cocktails", @"Brandy", @"Moonshine", @"Vermouth", nil];
+
+    self.sortByDict = [pickerDataDict objectForKey:@"sortByDict"];
+    
+    self.sizeDict = [pickerDataDict objectForKey:@"sizeDict"];
 }
 
 - (void)dismissKeyboard {
@@ -66,9 +72,9 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
     if(pickerView == [self sortByPicker]) {
         NSLog(@"sortBy changed!");
-        [[self sortByArray] objectAtIndex:row];
+        //[[self sortByArray] objectAtIndex:row];
     } else if (pickerView == [self sizePicker]) {
-        [[self sizeArray] objectAtIndex:row];
+        //[[self sizeArray] objectAtIndex:row];
         NSLog(@"size changed!");
     } else {
         NSLog(@"category changed to %@", [[self categoryArray] objectAtIndex:row]);
@@ -78,11 +84,11 @@
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (pickerView == [self sortByPicker]) {
-        return 7;
+        return [[self sortByDict] count];
     } else if(pickerView == [self sizePicker]) {
-        return 6;
+        return [[self sizeDict] count];
     } else {
-        return 16;
+        return [[self categoryArray] count];
     }
 }
 
@@ -97,13 +103,20 @@
     NSString *title;
     NSArray *dataArray = nil;
     if (pickerView == [self sortByPicker]) {
-        dataArray = [self sortByArray];
+        dataArray = [[self sortByDict] allKeys];
     } else if(pickerView == [self sizePicker]) {
-        dataArray = [self sizeArray];
+        dataArray = [[self sizeDict] keysSortedByValueUsingComparator:^(id first, id second) {
+            if ([first integerValue] < [second integerValue])
+                return (NSComparisonResult)NSOrderedDescending;
+            
+            if ([first integerValue] > [second integerValue])
+                return (NSComparisonResult)NSOrderedAscending;
+            return (NSComparisonResult)NSOrderedSame;
+        }];
     } else {
         dataArray = [self categoryArray];
     }
-    title = [@"" stringByAppendingFormat:@"%@", [dataArray objectAtIndex:row]];//row];
+    title = [@"" stringByAppendingFormat:@"%@", [dataArray objectAtIndex:row]];
     
     return title;
 }

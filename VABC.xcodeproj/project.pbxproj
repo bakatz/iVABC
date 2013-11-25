@@ -22,6 +22,7 @@
 		B536C76E1830D7A8002EA15B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B536C76C1830D7A8002EA15B /* InfoPlist.strings */; };
 		B536C7701830D7A8002EA15B /* VABCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B536C76F1830D7A8002EA15B /* VABCTests.m */; };
 		B55C60AA183B1D4700BEAD79 /* FilterDrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55C60A9183B1D4700BEAD79 /* FilterDrinksViewController.m */; };
+		B55C60AC183C934900BEAD79 /* FilterDrinksPickerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55C60AB183C934900BEAD79 /* FilterDrinksPickerData.plist */; };
 		B55CF53C1830E3730078CD02 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55CF53B1830E3730078CD02 /* MapKit.framework */; };
 		B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D31831B03100AB0082 /* DrinksViewController.m */; };
 		B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D61831B04700AB0082 /* LocationsViewController.m */; };
@@ -60,6 +61,7 @@
 		B536C76F1830D7A8002EA15B /* VABCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VABCTests.m; sourceTree = "<group>"; };
 		B55C60A8183B1D4700BEAD79 /* FilterDrinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterDrinksViewController.h; sourceTree = "<group>"; };
 		B55C60A9183B1D4700BEAD79 /* FilterDrinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterDrinksViewController.m; sourceTree = "<group>"; };
+		B55C60AB183C934900BEAD79 /* FilterDrinksPickerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterDrinksPickerData.plist; sourceTree = "<group>"; };
 		B55CF53B1830E3730078CD02 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B57584D21831B03100AB0082 /* DrinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinksViewController.h; sourceTree = "<group>"; };
 		B57584D31831B03100AB0082 /* DrinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinksViewController.m; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				B57584DC1831EFFA00AB0082 /* DrinkCell.m */,
 				B55C60A8183B1D4700BEAD79 /* FilterDrinksViewController.h */,
 				B55C60A9183B1D4700BEAD79 /* FilterDrinksViewController.m */,
+				B55C60AB183C934900BEAD79 /* FilterDrinksPickerData.plist */,
 			);
 			path = VABC;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				B536C7551830D7A8002EA15B /* Main_iPad.storyboard in Resources */,
 				B536C75D1830D7A8002EA15B /* Images.xcassets in Resources */,
 				B536C7521830D7A8002EA15B /* Main_iPhone.storyboard in Resources */,
+				B55C60AC183C934900BEAD79 /* FilterDrinksPickerData.plist in Resources */,
 				B536C7491830D7A8002EA15B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
