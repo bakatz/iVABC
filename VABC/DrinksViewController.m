@@ -166,7 +166,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"GOT SEGUE!!");
     
     if ([[segue identifier] isEqual: @"FilterDrinksSegue"]) {
         FilterDrinksViewController *fdvc = (FilterDrinksViewController *)[segue destinationViewController];

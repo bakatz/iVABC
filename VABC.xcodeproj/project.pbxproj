@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B515CD3E1844704E00848622 /* LocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B515CD3D1844704E00848622 /* LocationAnnotation.m */; };
 		B536C73F1830D7A8002EA15B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B536C73E1830D7A8002EA15B /* Foundation.framework */; };
 		B536C7411830D7A8002EA15B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B536C7401830D7A8002EA15B /* CoreGraphics.framework */; };
 		B536C7431830D7A8002EA15B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B536C7421830D7A8002EA15B /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B515CD3C1844704E00848622 /* LocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAnnotation.h; sourceTree = "<group>"; };
+		B515CD3D1844704E00848622 /* LocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAnnotation.m; sourceTree = "<group>"; };
 		B536C73B1830D7A8002EA15B /* VABC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VABC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B536C73E1830D7A8002EA15B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B536C7401830D7A8002EA15B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -151,6 +154,8 @@
 				B53840A418433AD200B59F86 /* FilterDrinksViewControllerDelegate.h */,
 				B55C60A9183B1D4700BEAD79 /* FilterDrinksViewController.m */,
 				B55C60AB183C934900BEAD79 /* FilterDrinksPickerData.plist */,
+				B515CD3C1844704E00848622 /* LocationAnnotation.h */,
+				B515CD3D1844704E00848622 /* LocationAnnotation.m */,
 			);
 			path = VABC;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				B57584DA1831B05B00AB0082 /* LocationDetailViewController.m in Sources */,
 				B536C74F1830D7A8002EA15B /* AppDelegate.m in Sources */,
 				B536C74B1830D7A8002EA15B /* main.m in Sources */,
+				B515CD3E1844704E00848622 /* LocationAnnotation.m in Sources */,
 				B55C60AA183B1D4700BEAD79 /* FilterDrinksViewController.m in Sources */,
 				B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */,
 				B57584DD1831EFFA00AB0082 /* DrinkCell.m in Sources */,

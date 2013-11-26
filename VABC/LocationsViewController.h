@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface LocationsViewController : UIViewController
+@interface LocationsViewController : UIViewController<NSURLConnectionDataDelegate, MKMapViewDelegate>
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

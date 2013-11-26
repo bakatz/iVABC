@@ -7,9 +7,13 @@
 //
 
 #import "LocationsViewController.h"
+#import "LocationDetailViewController.h"
+#import "LocationAnnotation.h"
 
 @interface LocationsViewController ()
-
+@property NSArray *locationsArray;
+@property NSMutableData *responseData;
+@property NSMutableDictionary *locationsDict;
 @end
 
 @implementation LocationsViewController
@@ -33,6 +37,10 @@
                                    options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                                    context:NULL];
     
+    self.responseData = [NSMutableData data];
+    
+    [self requestLocationsData];
+    
 
     
 }
@@ -52,18 +60,107 @@
     }
 }
 
-- (void)addLocations
+- (void)requestLocationsData
 {
-    CLLocationCoordinate2D annotationCoord;
     
-    annotationCoord.latitude = 47.640071;
-    annotationCoord.longitude = -122.129598;
+    NSURLRequest *request = [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:@"http://bakatz.com/scripts/get_vabc_data.php?type=establishments"]];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)addLocationsToMap
+{
+    int i = 0;
+    for (NSDictionary *locationData in [self locationsArray]) {
+        CLLocationCoordinate2D locationCoords;
+        
+        locationCoords.latitude = [[locationData objectForKey:@"lat"] floatValue];
+        locationCoords.longitude = [[locationData objectForKey:@"lon"] floatValue];
+        
+        LocationAnnotation *locationMarker = [[LocationAnnotation alloc] init];
+        
+        locationMarker.coordinate = locationCoords;
+        locationMarker.city = [locationData objectForKey:@"city"];
+        locationMarker.phoneNo = [locationData objectForKey:@"phone_number"];
+        locationMarker.title = [locationData objectForKey:@"street"];//[NSString stringWithFormat:@"VABC Store #%d", ++i];
+        locationMarker.subtitle = [NSString stringWithFormat:@"Tap to view details about VABC Store #%d", ++i];
+        [[self mapView] addAnnotation:locationMarker];
+    }
     
-    MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
-    annotationPoint.coordinate = annotationCoord;
-    annotationPoint.title = @"Microsoft";
-    annotationPoint.subtitle = @"Microsoft's headquarters";
-    [[self mapView] addAnnotation:annotationPoint];
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"LocationDetailSegue" sender:view];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // If it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MKPointAnnotation class]])
+    {
+        // Try to dequeue an existing pin view first.
+        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
+        if (!pinView)
+        {
+            // If an existing pin view was not available, create one.
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
+            pinView.canShowCallout = YES;
+            pinView.pinColor = MKPinAnnotationColorRed;
+            pinView.calloutOffset = CGPointMake(0, 32);
+
+            // Add a detail disclosure button to the callout.
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            pinView.rightCalloutAccessoryView = rightButton;
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqual: @"LocationDetailSegue"]) {
+        LocationDetailViewController *ldvc = [segue destinationViewController];
+        MKPinAnnotationView *senderPin = (MKPinAnnotationView *)sender;
+        LocationAnnotation *senderAnno = (LocationAnnotation *)senderPin.annotation;
+        
+        ldvc.locationAnnotation = senderAnno;
+    }
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"LVC - didReceiveResponse");
+    [self.responseData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.responseData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"LVC - didFailWithError");
+    NSString *errorMsg = [NSString stringWithFormat:@"Connection failed: %@", [error description]];
+    NSLog(@"%@", errorMsg);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"LVC - connectionDidFinishLoading");
+    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+    
+    // convert to JSON
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    self.locationsArray = res;
+    [self addLocationsToMap];
+    self.title = @"VABC Locations";
 }
 
 - (void)didReceiveMemoryWarning
