@@ -79,11 +79,56 @@
 
 - (void)setUpPickers {
     
-    [self sortByPicker];
-    [self sizePicker];
-    [self categoryPicker];
     
-    NSLog(@"Going to restore these values: name=%@ category=%@ size=%@ sortby=%@", self.drinkNameStr, self.categoryStr, self.sizeStr, self.sortByStr);
+    int sortByIdx = NSNotFound;
+    int categoryIdx = NSNotFound;
+    int sizeIdx = NSNotFound;
+    
+    if ([self categoryStr] != nil && [[self categoryStr] length] > 0) {
+        categoryIdx = [[self categoryArray] indexOfObject:[[self categoryStr] capitalizedString]];
+    }
+    if ([self sortByStr] != nil && [[self sortByStr] length] > 0) {
+        NSArray *keys = [[self sortByDict] allKeys];
+        for (NSString *key in keys) {
+            if ([[[[self sortByDict] objectForKey:key] objectForKey:@"id"] isEqualToString:self.sortByStr]) {
+                sortByIdx = [[self sortByArray] indexOfObject:key];
+                break;
+            }
+        }
+    }
+    
+    if ([self sizeStr] != nil && [[self sizeStr] length] > 0) {
+        NSArray *keys = [[self sizeDict] allKeys];
+        for (NSString *key in keys) {
+            if ([[[self sizeDict] objectForKey:key] isEqualToString:self.sizeStr]) {
+                sizeIdx = [[self sizeArray] indexOfObject:key];
+                break;
+            }
+        }
+    }
+
+    
+    NSLog(@"Trying to restore these values: name=%@ category=%@ size=%@ sortby=%@", self.drinkNameStr, self.categoryStr, self.sizeStr, self.sortByStr);
+    
+    if ([self drinkNameStr] != nil && [[self drinkNameStr] length] > 0) {
+        NSLog(@"Restored drinkName");
+        self.drinkNameText.text = self.drinkNameStr;
+    }
+    
+    if(sortByIdx != NSNotFound) {
+        NSLog(@"Restored sortBy");
+        [[self sortByPicker] selectRow:sortByIdx inComponent:0 animated:YES];
+    }
+    
+    if(categoryIdx != NSNotFound) {
+        NSLog(@"Restored category");
+        [[self categoryPicker] selectRow:categoryIdx inComponent:0 animated:YES];
+    }
+    
+    if(sizeIdx != NSNotFound) {
+        NSLog(@"Restored size");
+        [[self sizePicker] selectRow:sizeIdx inComponent:0 animated:YES];
+    }
     
 }
 
@@ -104,6 +149,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)resetButtonClicked:(UIButton *)sender {
+    [[self sortByPicker] selectRow:0 inComponent:0 animated:YES];
+    [[self categoryPicker] selectRow:0 inComponent:0 animated:YES];
+    [[self sizePicker] selectRow:0 inComponent:0 animated:YES];
+    self.drinkNameText.text = @"";
+    self.drinkNameStr = @"";
+    self.sortByStr = @"value_score";
+    self.categoryStr = @"";
+    self.sizeStr = @"";
+    
+    [[self delegate] requestDrinksData :self.sortByStr:self.sizeStr:self.categoryStr:self.drinkNameStr];
+    
+}
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
     if(pickerView == [self sortByPicker]) {
@@ -126,6 +184,11 @@
         [[self delegate] requestDrinksData :nil:size:nil:nil];
     } else {
         NSString *category = [[[self categoryArray] objectAtIndex:row] lowercaseString];
+        
+        //(All Categories) case - clear the category filter.
+        if ([category characterAtIndex:0] == '(') {
+            category = @"";
+        }
         NSLog(@"category changed to %@", category);
         [[self delegate] requestDrinksData :nil:nil:category:nil];
     }

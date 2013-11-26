@@ -42,12 +42,28 @@
                         change:(NSDictionary *)change
                        context:(void *)context {
     static bool firstLoc = true;
+    
+    // Only pan/zoom the map when we get our first location from the GPS, otherwise the map will snap back into place when the user tries to pan around.
     if ([self.mapView showsUserLocation] && firstLoc) {
         
         MKCoordinateSpan span = MKCoordinateSpanMake(0, 360/pow(2, 13)*self.mapView.frame.size.width/256);
         [[self mapView ]setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, span) animated:YES];
         firstLoc = false;
     }
+}
+
+- (void)addLocations
+{
+    CLLocationCoordinate2D annotationCoord;
+    
+    annotationCoord.latitude = 47.640071;
+    annotationCoord.longitude = -122.129598;
+    
+    MKPointAnnotation *annotationPoint = [[MKPointAnnotation alloc] init];
+    annotationPoint.coordinate = annotationCoord;
+    annotationPoint.title = @"Microsoft";
+    annotationPoint.subtitle = @"Microsoft's headquarters";
+    [[self mapView] addAnnotation:annotationPoint];
 }
 
 - (void)didReceiveMemoryWarning
