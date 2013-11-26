@@ -17,6 +17,7 @@
                     <connections>
                         <segue destination="zau-Yd-fjw" kind="relationship" relationship="viewControllers" id="9RS-l2-QBf"/>
                         <segue destination="Glh-rs-t8h" kind="relationship" relationship="viewControllers" id="Xda-Xz-TVW"/>
+                        <segue destination="x63-SV-BrB" kind="relationship" relationship="viewControllers" id="Z7I-wu-Dhj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
@@ -217,11 +218,11 @@
             </objects>
             <point key="canvasLocation" x="1571" y="180"/>
         </scene>
-        <!--Navigation Controller - Drinks-->
+        <!--Navigation Controller - VABC Drinks-->
         <scene sceneID="lZv-nU-cmw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zau-Yd-fjw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Drinks" id="5hl-PI-BW6"/>
+                    <tabBarItem key="tabBarItem" title="VABC Drinks" image="drinks" id="5hl-PI-BW6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WYc-Uc-Jw4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -366,11 +367,41 @@
             </objects>
             <point key="canvasLocation" x="1571" y="855"/>
         </scene>
+        <!--View Controller - About VABC-->
+        <scene sceneID="8Ij-mZ-uKt">
+            <objects>
+                <viewController id="x63-SV-BrB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qve-iG-hFD"/>
+                        <viewControllerLayoutGuide type="bottom" id="MJB-fw-ShR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ilH-Xm-piZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aw3-hC-x0W">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">VABC stands for Virginia ABC Store Information. This app allows you to select, filter, and search for drinks, as well as to find all ABC store locations in Virginia via the Locations tab. This is not an official Virginia ABC app, nor is this app affiliated with the aforementioned organization. All coding and app icons by Ben Katz (http://bakatz.com). Navigation icons provided by icons8 (http://icons8.com). All drink data is public domain, retrieved from http://www.abc.virginia.gov.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="About VABC" image="info" id="ePW-pn-NRe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e6F-0Z-pBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-56" y="889"/>
+        </scene>
         <!--Navigation Controller - VABC Locations-->
         <scene sceneID="43h-sY-hW2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Glh-rs-t8h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="VABC Locations" id="ymb-Bq-PUZ"/>
+                    <tabBarItem key="tabBarItem" title="VABC Locations" image="locations" id="ymb-Bq-PUZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ECM-i6-84T">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -386,6 +417,11 @@
             <point key="canvasLocation" x="563" y="855"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="drinks" width="32" height="32"/>
+        <image name="info" width="32" height="32"/>
+        <image name="locations" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -11,7 +11,4 @@
 @interface LocationAnnotation : MKPointAnnotation
 @property NSString *phoneNo;
 @property NSString *city;
-//@property (strong, nonatomic) IBOutlet UILabel *streetLabel;
-//@property (strong, nonatomic) IBOutlet UILabel *cityStateLabel;
-//@property (strong, nonatomic) IBOutlet UILabel *phoneNumberLabel;
 @end
