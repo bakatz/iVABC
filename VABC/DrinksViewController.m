@@ -153,7 +153,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+    NSLog(@"Succeeded! Received %lu bytes of data",(unsigned long)[self.responseData length]);
     
     // convert to JSON
     NSError *myError = nil;

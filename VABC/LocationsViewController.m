@@ -51,6 +51,10 @@
                        context:(void *)context {
     static bool firstLoc = true;
     
+    // we'll get a zero reading when the user hasn't given us permission to view location yet. ignore this.
+    if(self.mapView.userLocation.coordinate.latitude == 0 && self.mapView.userLocation.coordinate.longitude == 0)
+        return;
+    
     // Only pan/zoom the map when we get our first location from the GPS, otherwise the map will snap back into place when the user tries to pan around.
     if ([self.mapView showsUserLocation] && firstLoc) {
         
@@ -111,7 +115,7 @@
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
             pinView.canShowCallout = YES;
             pinView.pinColor = MKPinAnnotationColorRed;
-            pinView.calloutOffset = CGPointMake(0, 32);
+            //pinView.calloutOffset = CGPointMake(0, 32);
 
             // Add a detail disclosure button to the callout.
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -153,7 +157,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"LVC - connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+    NSLog(@"Succeeded! Received %lu bytes of data",(unsigned long)[self.responseData length]);
     
     // convert to JSON
     NSError *myError = nil;

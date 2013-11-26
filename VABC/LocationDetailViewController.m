@@ -71,8 +71,8 @@
     [myFormatter setDateFormat:@"EEEE"];
     NSString *dayOfWeek = [myFormatter stringFromDate:now];
     
-    int m = [dateComps minute];
-    int h = [dateComps hour];
+    NSInteger m = [dateComps minute];
+    NSInteger h = [dateComps hour];
     UIColor *redColor = [UIColor redColor];
     UIColor *greenColor = [UIColor greenColor];
     
@@ -81,38 +81,38 @@
         if (h < 13 || h > 18) {
             self.statusLabel.text = @"CLOSED";
             [self.statusLabel setTextColor:redColor];
-            int mins = 60 - m;
-            int hours = (h >= 18 ? 33 - h : 12 - h) + (mins == 60 ? 1 : 0);
+            NSInteger mins = 60 - m;
+            NSInteger hours = (h >= 18 ? 33 - h : 12 - h) + (mins == 60 ? 1 : 0);
             
-            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will open in %d hours and %d minutes.", hours, mins];
+            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will open in %ld hours and %ld minutes.", hours, mins];
             return;
         } else {
             self.statusLabel.text = @"OPEN";
             [self.statusLabel setTextColor:greenColor];
-            int mins = 60 - m;
-            int hours = 20 - h + (mins == 60 ? 1 : 0);
+            NSInteger mins = 60 - m;
+            NSInteger hours = 20 - h + (mins == 60 ? 1 : 0);
             mins %= 60;
             
-            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will close in %d hours and %d minutes.", hours, mins];
+            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will close in %ld hours and %ld minutes.", hours, mins];
             return;
         }
     } else { // All other days -- 10 am to 9 pm
         if (h < 10 || h >= 21) {
             self.statusLabel.text = @"CLOSED";
             [self.statusLabel setTextColor:redColor];
-            int mins = 60 - m;
-            int hours = (h >= 21 ? 33 - h : 9 - h) + (mins == 60 ? 1 : 0);
+            NSInteger mins = 60 - m;
+            NSInteger hours = (h >= 21 ? 33 - h : 9 - h) + (mins == 60 ? 1 : 0);
             mins %= 60;
             
-            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will open in %d hours and %d minutes.", hours, mins];
+            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will open in %ld hours and %ld minutes.", hours, mins];
             return;
         } else {
             self.statusLabel.text = @"OPEN";
             [self.statusLabel setTextColor:greenColor];
-            int mins = 60 - m;
-            int hours = 20 - h + (mins == 60 ? 1 : 0);
+            NSInteger mins = 60 - m;
+            NSInteger hours = 20 - h + (mins == 60 ? 1 : 0);
             mins %= 60;
-            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will close in %d hours and %d minutes.", hours, mins];
+            self.openCloseTimeLabel.text = [NSString stringWithFormat:@"This store will close in %ld hours and %ld minutes.", hours, mins];
             return;
         }
     }

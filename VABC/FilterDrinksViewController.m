@@ -80,9 +80,9 @@
 - (void)setUpPickers {
     
     
-    int sortByIdx = NSNotFound;
-    int categoryIdx = NSNotFound;
-    int sizeIdx = NSNotFound;
+    NSInteger sortByIdx = NSNotFound;
+    NSInteger categoryIdx = NSNotFound;
+    NSInteger sizeIdx = NSNotFound;
     
     if ([self categoryStr] != nil && [[self categoryStr] length] > 0) {
         categoryIdx = [[self categoryArray] indexOfObject:[[self categoryStr] capitalizedString]];
