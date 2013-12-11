@@ -13,6 +13,9 @@
 @interface DrinksViewController ()
 @property NSArray *drinksArray;
 @property NSMutableData *responseData;
+@property bool replaceDrinks;
+@property NSInteger startRow;
+@property NSInteger lastRequestedRow;
 @end
 
 @implementation DrinksViewController
@@ -32,6 +35,10 @@
     
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
+    
+    self.replaceDrinks = true;
+    self.lastRequestedRow = -1;
+    self.startRow = 0;
     
     self.sortVal = @"value_score";
     self.numMLVal = @"";
@@ -64,7 +71,7 @@
         self.nameVal = name;
     }
     
-    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&sort=%@&num_ml=%@&category=%@&name=%@", self.sortVal, self.numMLVal, self.categoryVal, self.nameVal];
+    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&start=%ld&sort=%@&num_ml=%@&category=%@&name=%@", self.startRow, self.sortVal, self.numMLVal, self.categoryVal, self.nameVal];
     
     NSString *urlToSend = [NSString stringWithFormat:@"%@%@", @"http://bakatz.com/scripts/get_vabc_data.php?", [urlParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
@@ -117,16 +124,24 @@
     float fullPrice = [[cellData objectForKey:@"full_price"] floatValue];
     float price = [[cellData objectForKey:@"price"] floatValue];
     
-    // if we have a sale item, show the full price with a strikethrough effect
+    NSInteger age = [[cellData objectForKey:@"age"] integerValue];
+    
+    if(age > 0) {
+        cell.ageLabel.text = [NSString stringWithFormat:@"Aged %ld years", (long)age];
+    } else {
+        cell.ageLabel.text = @"Not aged";
+    }
+    
+    // if we have a sale item, show the full price with a strikethrough effect.
     if(price < fullPrice) {
     
-        NSDictionary *attributes = @{
+        NSDictionary *strikethroughAttributes = @{
                                      NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
                                      };
     
         NSString *formattedFullPrice = [NSString stringWithFormat:@"$%@", [cellData objectForKey:@"full_price"]];
     
-        NSAttributedString *strikethroughAttrText = [[NSAttributedString alloc] initWithString:formattedFullPrice attributes:attributes];
+        NSAttributedString *strikethroughAttrText = [[NSAttributedString alloc] initWithString:formattedFullPrice attributes:strikethroughAttributes];
         cell.fullPriceLabel.text = formattedFullPrice;
         cell.fullPriceLabel.attributedText = strikethroughAttrText;
         cell.fullPriceLabel.hidden = NO;
@@ -143,8 +158,21 @@
     NSString* formattedValueRating = [NSString stringWithFormat:@"%ld", lroundf([[cellData objectForKey:@"value_score"] floatValue])];
     
     cell.valueRatingLabel.text = formattedValueRating;
-   // cell.valueRatingLabel.text = formattedValueRating;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == ([[self drinksArray] count] - 1)) { //if we hover over the last row
+        if([self lastRequestedRow] == indexPath.row) { // and we haven't already sent a request to get the next set of data
+            NSLog(@"We've just requested this data, not requesting it again!");
+            return;
+        }
+        
+        self.lastRequestedRow = indexPath.row;
+        self.startRow = [[self drinksArray] count];
+        self.replaceDrinks = false;
+        [self requestDrinksData:nil :nil :nil :nil];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,6 +185,8 @@
 }
 - (IBAction)reloadButtonClicked:(UIBarButtonItem *)sender {
     NSLog(@"reloadButtonClicked");
+    self.lastRequestedRow = -1;
+    self.startRow = 0;
     [self requestDrinksData:nil :nil :nil :nil];
 }
 
@@ -182,9 +212,33 @@
     // convert to JSON
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    self.drinksArray = res;
+    
+
+    bool scrollToTop = true;
+    // case where we need to lazy load more items.
+    if (![self replaceDrinks]) {
+        if ([self drinksArray] == nil) {
+            self.drinksArray = [[NSArray alloc] init];
+        }
+        
+        NSMutableArray *combinedArr = [[NSMutableArray alloc] initWithArray:[self drinksArray]];
+        [combinedArr addObjectsFromArray:res];
+        
+        self.drinksArray = combinedArr;
+        self.replaceDrinks = true; // reset to beginning state so that if a filter call is made directly after this, it doesn't add to the irrelevant data already in the tableview.
+        scrollToTop = false;
+        self.startRow = 0;
+    } else { // case where the data is loaded for the first time, or user updates filters.
+        self.drinksArray = res;
+    }
     
     [[self tblView] reloadData];
+    
+    if(scrollToTop) {
+        NSLog(@"Scrolling to top!!");
+        // Scroll to top
+        [[self tblView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    }
     self.title = @"VABC Drinks";
     
 }

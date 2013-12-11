@@ -100,10 +100,17 @@
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aged 999 years" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ony-NQ-bkq">
+                                                    <rect key="frame" x="113" y="38" width="99" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="abvLabel" destination="Ztz-Bj-1sH" id="v2n-aj-fon"/>
+                                            <outlet property="ageLabel" destination="Ony-NQ-bkq" id="feC-2I-Pkn"/>
                                             <outlet property="categoryLabel" destination="rtX-6U-7fv" id="d0w-vJ-sJA"/>
                                             <outlet property="fullPriceLabel" destination="Ete-fn-Znz" id="q33-sl-KTj"/>
                                             <outlet property="nameLabel" destination="hbE-MM-dp8" id="Dq6-2t-9sw"/>
@@ -199,19 +206,23 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9cE-bP-Lxn">
-                                <rect key="frame" x="20" y="136" width="285" height="29"/>
+                                <rect key="frame" x="9" y="136" width="306" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="(All Types)"/>
+                                    <segment title="Best Value"/>
                                     <segment title="Second"/>
                                     <segment title=""/>
                                     <segment title=""/>
                                     <segment title=""/>
                                     <segment title=""/>
+                                    <segment title=""/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectedSegmentChanged:" destination="Bdx-is-M49" eventType="valueChanged" id="zlm-Uz-WSa"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WVh-QW-neQ">
-                                <rect key="frame" x="20" y="172" width="285" height="29"/>
+                                <rect key="frame" x="9" y="172" width="306" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="(All Sizes)"/>
@@ -220,27 +231,29 @@
                                     <segment title=""/>
                                     <segment title=""/>
                                     <segment title=""/>
-                                    <segment title=""/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectedSegmentChanged:" destination="Bdx-is-M49" eventType="valueChanged" id="Ml3-C9-9d7"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="top" secondItem="Tcu-Wq-Iy8" secondAttribute="bottom" constant="3" id="6Lx-ch-AaK"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="leading" secondItem="WVh-QW-neQ" secondAttribute="leading" id="N9c-Yp-Mbe"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="trailing" secondItem="WVh-QW-neQ" secondAttribute="trailing" id="NU4-ee-jVf"/>
-                            <constraint firstItem="q6s-92-2VD" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="20" symbolic="YES" id="S2W-Gc-W8d"/>
-                            <constraint firstAttribute="trailing" secondItem="q6s-92-2VD" secondAttribute="trailing" constant="20" symbolic="YES" id="UXH-pL-hYw"/>
-                            <constraint firstItem="q6s-92-2VD" firstAttribute="centerX" secondItem="Bmy-RI-C62" secondAttribute="centerX" id="Uxa-BD-tsz"/>
-                            <constraint firstItem="Bmy-RI-C62" firstAttribute="top" secondItem="WVh-QW-neQ" secondAttribute="bottom" constant="15" id="Vhh-xb-OU7"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="top" secondItem="q6s-92-2VD" secondAttribute="bottom" constant="8" symbolic="YES" id="Zpl-Pl-eE1"/>
-                            <constraint firstItem="WVh-QW-neQ" firstAttribute="top" secondItem="9cE-bP-Lxn" secondAttribute="bottom" constant="8" symbolic="YES" id="abd-bX-X5q"/>
-                            <constraint firstItem="q6s-92-2VD" firstAttribute="top" secondItem="Oij-Mb-HPj" secondAttribute="bottom" constant="1" id="ddu-In-53e"/>
-                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="centerX" secondItem="q6s-92-2VD" secondAttribute="centerX" id="ocE-89-I5c"/>
-                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="94" id="rpT-JU-QRn"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="leading" secondItem="q6s-92-2VD" secondAttribute="leading" id="sPd-j3-8yg"/>
-                            <constraint firstAttribute="trailing" secondItem="9cE-bP-Lxn" secondAttribute="trailing" constant="15" id="uWh-Qz-wJf"/>
-                            <constraint firstItem="Bmy-RI-C62" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="68" id="vIg-fE-4G8"/>
+                            <constraint firstAttribute="trailing" secondItem="q6s-92-2VD" secondAttribute="trailing" constant="20" symbolic="YES" id="4eQ-wI-GrI"/>
+                            <constraint firstAttribute="trailing" secondItem="9cE-bP-Lxn" secondAttribute="trailing" constant="5" id="HpR-3q-juG"/>
+                            <constraint firstItem="Bmy-RI-C62" firstAttribute="top" secondItem="WVh-QW-neQ" secondAttribute="bottom" constant="15" id="LLx-8D-ZFJ"/>
+                            <constraint firstItem="Bmy-RI-C62" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="68" id="N6P-SP-mb9"/>
+                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="top" secondItem="Tcu-Wq-Iy8" secondAttribute="bottom" constant="3" id="Ot8-YX-QfZ"/>
+                            <constraint firstItem="WVh-QW-neQ" firstAttribute="leading" secondItem="9cE-bP-Lxn" secondAttribute="leading" id="P7o-Dj-e6Q"/>
+                            <constraint firstItem="q6s-92-2VD" firstAttribute="top" secondItem="Oij-Mb-HPj" secondAttribute="bottom" constant="1" id="Tl6-XE-RS9"/>
+                            <constraint firstItem="Bmy-RI-C62" firstAttribute="centerX" secondItem="q6s-92-2VD" secondAttribute="centerX" id="baK-cx-FWI"/>
+                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="9" id="fUS-1g-08c"/>
+                            <constraint firstItem="q6s-92-2VD" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="20" symbolic="YES" id="jmC-ub-eEn"/>
+                            <constraint firstItem="WVh-QW-neQ" firstAttribute="top" secondItem="9cE-bP-Lxn" secondAttribute="bottom" constant="8" symbolic="YES" id="l4U-zS-ftC"/>
+                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="94" id="lxA-gb-PYt"/>
+                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="top" secondItem="q6s-92-2VD" secondAttribute="bottom" constant="8" symbolic="YES" id="mh5-6S-Rol"/>
+                            <constraint firstItem="q6s-92-2VD" firstAttribute="centerX" secondItem="Oij-Mb-HPj" secondAttribute="centerX" id="uFh-hg-Clb"/>
+                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="trailing" secondItem="WVh-QW-neQ" secondAttribute="trailing" id="xiY-uA-kF7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filter" id="Nco-sc-IBg"/>
@@ -248,7 +261,7 @@
                         <outlet property="categoryPicker" destination="Bmy-RI-C62" id="uVO-VP-WVB"/>
                         <outlet property="drinkNameText" destination="q6s-92-2VD" id="jZk-il-JFe"/>
                         <outlet property="drinkSizeControl" destination="WVh-QW-neQ" id="HFC-Ye-NH3"/>
-                        <outlet property="drinkTypeControl" destination="9cE-bP-Lxn" id="K5B-Vn-BRX"/>
+                        <outlet property="drinkSortByControl" destination="9cE-bP-Lxn" id="JPg-Fk-m4W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXT-dw-oCb" userLabel="First Responder" sceneMemberID="firstResponder"/>

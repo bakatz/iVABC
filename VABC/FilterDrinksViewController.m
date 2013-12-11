@@ -28,6 +28,28 @@
     }
     return self;
 }
+- (IBAction)selectedSegmentChanged:(UISegmentedControl *)sender {
+    
+    if (sender == [self drinkSizeControl]) {
+        NSString *key = [[self sizeArray] objectAtIndex:[sender selectedSegmentIndex]];
+        NSString *size = [[self sizeDict] objectForKey:key];
+        
+        // (All Sizes) case
+        if([size isEqualToString:@"9999"]) {
+            size = @"";
+        }
+        
+        NSLog(@"size changed to %@", size);
+        [[self delegate] requestDrinksData :nil:size:nil:nil];
+    } else {
+        NSString *key = [[self sortByArray] objectAtIndex:[sender selectedSegmentIndex]];
+        NSDictionary *sortByDictData = [[self sortByDict] objectForKey:key];
+        NSString *internalID = [sortByDictData objectForKey:@"id"];
+        NSLog(@"sortBy changed to %@", internalID);
+        [[self delegate] requestDrinksData :internalID:nil:nil:nil];
+        //[[self drinksViewController] requestDrinksData];
+    }
+}
 
 - (IBAction)textFieldChanged:(UITextField *)sender {
     [[self delegate] requestDrinksData :nil:nil:nil:[sender text]];
@@ -45,7 +67,7 @@
     UIFont *font = [UIFont boldSystemFontOfSize:8.0f];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:UITextAttributeFont];
-    [self.drinkTypeControl setTitleTextAttributes:attributes
+    [self.drinkSortByControl setTitleTextAttributes:attributes
                                     forState:UIControlStateNormal];
     [self.drinkSizeControl setTitleTextAttributes:attributes
                                          forState:UIControlStateNormal];
@@ -114,6 +136,18 @@
             }
         }
     }
+    
+    NSUInteger len = [[self sortByArray] count];
+    for (int i = 0; i < len; i++) {
+        [[self drinkSortByControl] setTitle:[[self sortByArray] objectAtIndex:i] forSegmentAtIndex:i];
+    }
+    
+    len = [[self sizeArray] count];
+    for (int i = 0; i < len; i++) {
+        [[self drinkSizeControl] setTitle:[[self sizeArray] objectAtIndex:i] forSegmentAtIndex:i];
+    }
+    //[segmentedControl setTitle:<YourLocalizedString> forSegmentAtIndex:0];
+
 
     
     NSLog(@"Trying to restore these values: name=%@ category=%@ size=%@ sortby=%@", self.drinkNameStr, self.categoryStr, self.sizeStr, self.sortByStr);
@@ -125,7 +159,8 @@
     
     if(sortByIdx != NSNotFound) {
         NSLog(@"Restored sortBy");
-        [[self sortByPicker] selectRow:sortByIdx inComponent:0 animated:YES];
+        self.drinkSortByControl.selectedSegmentIndex = sortByIdx;
+        //[[self sortByPicker] selectRow:sortByIdx inComponent:0 animated:YES];
     }
     
     if(categoryIdx != NSNotFound) {
@@ -135,7 +170,8 @@
     
     if(sizeIdx != NSNotFound) {
         NSLog(@"Restored size");
-        [[self sizePicker] selectRow:sizeIdx inComponent:0 animated:YES];
+        self.drinkSizeControl.selectedSegmentIndex = sizeIdx;
+        //[[self sizePicker] selectRow:sizeIdx inComponent:0 animated:YES];
     }
     
 }
@@ -158,9 +194,12 @@
 }
 
 - (IBAction)resetButtonClicked:(UIButton *)sender {
-    [[self sortByPicker] selectRow:0 inComponent:0 animated:YES];
+    //[[self sortByPicker] selectRow:0 inComponent:0 animated:YES];
+    self.drinkSortByControl.selectedSegmentIndex = 0;
     [[self categoryPicker] selectRow:0 inComponent:0 animated:YES];
-    [[self sizePicker] selectRow:0 inComponent:0 animated:YES];
+    //[[self sizePicker] selectRow:0 inComponent:0 animated:YES];
+    self.drinkSizeControl.selectedSegmentIndex = 0;
+    
     self.drinkNameText.text = @"";
     self.drinkNameStr = @"";
     self.sortByStr = @"value_score";
@@ -172,7 +211,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
-    if(pickerView == [self sortByPicker]) {
+    /*if(pickerView == [self sortByPicker]) {
         NSString *key = [[self sortByArray] objectAtIndex:row];
         NSDictionary *sortByDictData = [[self sortByDict] objectForKey:key];
         NSString *internalID = [sortByDictData objectForKey:@"id"];
@@ -190,7 +229,7 @@
         
         NSLog(@"size changed to %@", size);
         [[self delegate] requestDrinksData :nil:size:nil:nil];
-    } else {
+    } else { */
         NSString *category = [[[self categoryArray] objectAtIndex:row] lowercaseString];
         
         //(All Categories) case - clear the category filter.
@@ -199,18 +238,18 @@
         }
         NSLog(@"category changed to %@", category);
         [[self delegate] requestDrinksData :nil:nil:category:nil];
-    }
+    //}
 }
 
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (pickerView == [self sortByPicker]) {
+   /* if (pickerView == [self sortByPicker]) {
         return [[self sortByDict] count];
     } else if(pickerView == [self sizePicker]) {
         return [[self sizeDict] count];
-    } else {
+    } else { */
         return [[self categoryArray] count];
-    }
+    //}
 }
 
 // tell the picker how many components it will have
@@ -221,7 +260,7 @@
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    NSString *title;
+    /*NSString *title;
     NSArray *dataArray = nil;
     if (pickerView == [self sortByPicker]) {
         dataArray = [[self sortByDict] allKeys];
@@ -229,11 +268,11 @@
         dataArray = [self sizeArray];
     } else {
         dataArray = [self categoryArray];
-    }
+    } */
     
-    title = [@"" stringByAppendingFormat:@"%@", [dataArray objectAtIndex:row]];
+    // title = [@"" stringByAppendingFormat:@"%@", [[self categoryArray] objectAtIndex:row]];
     
-    return title;
+    return [@"" stringByAppendingFormat:@"%@", [[self categoryArray] objectAtIndex:row]];
 }
 
 // tell the picker the width of each row for a given component
