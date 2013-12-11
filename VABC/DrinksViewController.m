@@ -110,16 +110,40 @@
     NSDictionary *cellData = [[self drinksArray] objectAtIndex:[indexPath item]];
     cell.nameLabel.text = [cellData objectForKey:@"name"];
     cell.categoryLabel.text = [[cellData objectForKey:@"category"] capitalizedString];
-    cell.categoryShortLabel.text = [cell.categoryLabel.text substringToIndex:2];
-    cell.priceLabel.text = [NSString stringWithFormat:@"$%@", [cellData objectForKey:@"price"]];
-    cell.sizeLabel.text = [NSString stringWithFormat:@"%@ mL", [[cellData objectForKey:@"num_ml"] stringValue]];
     
-    NSString* formattedABV = [NSString stringWithFormat:@"%.03f%% ABV", [[cellData objectForKey:@"abv_pct"] floatValue]];
+    //cell.categoryShortLabel.text = [cell.categoryLabel.text substringToIndex:2];
+    cell.priceLabel.text = [NSString stringWithFormat:@"$%@", [cellData objectForKey:@"price"]];
+    
+    float fullPrice = [[cellData objectForKey:@"full_price"] floatValue];
+    float price = [[cellData objectForKey:@"price"] floatValue];
+    
+    // if we have a sale item, show the full price with a strikethrough effect
+    if(price < fullPrice) {
+    
+        NSDictionary *attributes = @{
+                                     NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
+                                     };
+    
+        NSString *formattedFullPrice = [NSString stringWithFormat:@"$%@", [cellData objectForKey:@"full_price"]];
+    
+        NSAttributedString *strikethroughAttrText = [[NSAttributedString alloc] initWithString:formattedFullPrice attributes:attributes];
+        cell.fullPriceLabel.text = formattedFullPrice;
+        cell.fullPriceLabel.attributedText = strikethroughAttrText;
+        cell.fullPriceLabel.hidden = NO;
+    } else {
+        cell.fullPriceLabel.hidden = YES;
+    }
+    
+    
+    cell.sizeLabel.text = [NSString stringWithFormat:@"%ld mL", lroundf([[cellData objectForKey:@"num_ml"] floatValue])];
+    
+    NSString* formattedABV = [NSString stringWithFormat:@"%ld%% ABV", lroundf([[cellData objectForKey:@"abv_pct"] floatValue])];
     cell.abvLabel.text = formattedABV;
     
-    NSString* formattedValueRating = [NSString stringWithFormat:@"%.03f value rating", [[cellData objectForKey:@"value_score"] floatValue]];
+    NSString* formattedValueRating = [NSString stringWithFormat:@"%ld", lroundf([[cellData objectForKey:@"value_score"] floatValue])];
     
     cell.valueRatingLabel.text = formattedValueRating;
+   // cell.valueRatingLabel.text = formattedValueRating;
     return cell;
 }
 

@@ -10,6 +10,8 @@
 #import "DrinksViewController.h"
 
 @interface FilterDrinksViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate>
+@property (strong, nonatomic) IBOutlet UISegmentedControl *drinkTypeControl;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *drinkSizeControl;
 
 // 7 items
 @property (strong, nonatomic) IBOutlet UIPickerView *sortByPicker;

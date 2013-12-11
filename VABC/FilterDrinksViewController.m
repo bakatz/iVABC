@@ -42,6 +42,14 @@
                                    action:@selector(dismissKeyboard)];
     [[self view] addGestureRecognizer:tap];
     
+    UIFont *font = [UIFont boldSystemFontOfSize:8.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:UITextAttributeFont];
+    [self.drinkTypeControl setTitleTextAttributes:attributes
+                                    forState:UIControlStateNormal];
+    [self.drinkSizeControl setTitleTextAttributes:attributes
+                                         forState:UIControlStateNormal];
+    
     NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"FilterDrinksPickerData" ofType:@"plist"];
     NSDictionary *pickerDataDict = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     
