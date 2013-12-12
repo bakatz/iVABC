@@ -15,7 +15,8 @@
 @property NSMutableData *responseData;
 @property bool replaceDrinks;
 @property NSInteger startRow;
-@property NSInteger lastRequestedRow;
+@property bool lazyLoadingEnabled;
+//@property NSInteger lastRequestedRow;
 @end
 
 @implementation DrinksViewController
@@ -37,8 +38,9 @@
     self.tblView.dataSource = self;
     
     self.replaceDrinks = true;
-    self.lastRequestedRow = -1;
+    //self.lastRequestedRow = -1;
     self.startRow = 0;
+    self.lazyLoadingEnabled = true;
     
     self.sortVal = @"value_score";
     self.numMLVal = @"";
@@ -54,24 +56,27 @@
 - (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name;
 {
     self.title = @"VABC Drinks - Loading ...";
-    
     if(sort != nil) {
         self.sortVal = sort;
+        [self resetParameters];
     }
     
     if(numML != nil) {
         self.numMLVal = numML;
+        [self resetParameters];
     }
     
     if(category != nil) {
         self.categoryVal = category;
+        [self resetParameters];
     }
     
     if(name != nil) {
         self.nameVal = name;
+        [self resetParameters];
     }
     
-    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&start=%ld&sort=%@&num_ml=%@&category=%@&name=%@", self.startRow, self.sortVal, self.numMLVal, self.categoryVal, self.nameVal];
+    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&start=%ld&sort=%@&num_ml=%@&category=%@&name=%@", (long)self.startRow, self.sortVal, self.numMLVal, self.categoryVal, self.nameVal];
     
     NSString *urlToSend = [NSString stringWithFormat:@"%@%@", @"http://bakatz.com/scripts/get_vabc_data.php?", [urlParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
@@ -79,6 +84,13 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
     [NSURL URLWithString:urlToSend]];
     [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)resetParameters
+{
+    self.lazyLoadingEnabled = true;
+    self.replaceDrinks = true;
+    self.startRow = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,12 +175,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == ([[self drinksArray] count] - 1)) { //if we hover over the last row
-        if([self lastRequestedRow] == indexPath.row) { // and we haven't already sent a request to get the next set of data
-            NSLog(@"We've just requested this data, not requesting it again!");
+        if (![self lazyLoadingEnabled]) {
+            NSLog(@"Lazy loading has been disabled by the NSURLConnection delegate because of empty result set, not loading more data.");
             return;
         }
-        
-        self.lastRequestedRow = indexPath.row;
         self.startRow = [[self drinksArray] count];
         self.replaceDrinks = false;
         [self requestDrinksData:nil :nil :nil :nil];
@@ -185,8 +195,7 @@
 }
 - (IBAction)reloadButtonClicked:(UIBarButtonItem *)sender {
     NSLog(@"reloadButtonClicked");
-    self.lastRequestedRow = -1;
-    self.startRow = 0;
+    [self resetParameters];
     [self requestDrinksData:nil :nil :nil :nil];
 }
 
@@ -212,11 +221,15 @@
     // convert to JSON
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-
     bool scrollToTop = true;
     // case where we need to lazy load more items.
     if (![self replaceDrinks]) {
+        if ([res count] == 0) {
+            self.lazyLoadingEnabled = false;
+             NSLog(@"NSURLConnectionHandler got empty result set, disabled lazy loading.");
+            self.title = @"VABC Drinks";
+            return;
+        }
         if ([self drinksArray] == nil) {
             self.drinksArray = [[NSArray alloc] init];
         }
