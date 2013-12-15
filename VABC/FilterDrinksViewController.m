@@ -47,7 +47,6 @@
         NSString *internalID = [sortByDictData objectForKey:@"id"];
         NSLog(@"sortBy changed to %@", internalID);
         [[self delegate] requestDrinksData :internalID:nil:nil:nil];
-        //[[self drinksViewController] requestDrinksData];
     }
 }
 
@@ -194,10 +193,8 @@
 }
 
 - (IBAction)resetButtonClicked:(UIButton *)sender {
-    //[[self sortByPicker] selectRow:0 inComponent:0 animated:YES];
     self.drinkSortByControl.selectedSegmentIndex = 0;
     [[self categoryPicker] selectRow:0 inComponent:0 animated:YES];
-    //[[self sizePicker] selectRow:0 inComponent:0 animated:YES];
     self.drinkSizeControl.selectedSegmentIndex = 0;
     
     self.drinkNameText.text = @"";
@@ -211,45 +208,19 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
-    /*if(pickerView == [self sortByPicker]) {
-        NSString *key = [[self sortByArray] objectAtIndex:row];
-        NSDictionary *sortByDictData = [[self sortByDict] objectForKey:key];
-        NSString *internalID = [sortByDictData objectForKey:@"id"];
-        NSLog(@"sortBy changed to %@", internalID);
-        [[self delegate] requestDrinksData :internalID:nil:nil:nil];
-        //[[self drinksViewController] requestDrinksData];
-    } else if (pickerView == [self sizePicker]) {
-        NSString *key = [[self sizeArray] objectAtIndex:row];
-        NSString *size = [[self sizeDict] objectForKey:key];
+    NSString *category = [[[self categoryArray] objectAtIndex:row] lowercaseString];
         
-        // (All Sizes) case
-        if([size isEqualToString:@"9999"]) {
-            size = @"";
-        }
-        
-        NSLog(@"size changed to %@", size);
-        [[self delegate] requestDrinksData :nil:size:nil:nil];
-    } else { */
-        NSString *category = [[[self categoryArray] objectAtIndex:row] lowercaseString];
-        
-        //(All Categories) case - clear the category filter.
-        if ([category characterAtIndex:0] == '(') {
-            category = @"";
-        }
-        NSLog(@"category changed to %@", category);
-        [[self delegate] requestDrinksData :nil:nil:category:nil];
-    //}
+    //(All Categories) case - clear the category filter.
+    if ([category characterAtIndex:0] == '(') {
+        category = @"";
+    }
+    NSLog(@"category changed to %@", category);
+    [[self delegate] requestDrinksData :nil:nil:category:nil];
 }
 
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-   /* if (pickerView == [self sortByPicker]) {
-        return [[self sortByDict] count];
-    } else if(pickerView == [self sizePicker]) {
-        return [[self sizeDict] count];
-    } else { */
-        return [[self categoryArray] count];
-    //}
+    return [[self categoryArray] count];
 }
 
 // tell the picker how many components it will have
@@ -259,19 +230,6 @@
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
-    /*NSString *title;
-    NSArray *dataArray = nil;
-    if (pickerView == [self sortByPicker]) {
-        dataArray = [[self sortByDict] allKeys];
-    } else if(pickerView == [self sizePicker]) {
-        dataArray = [self sizeArray];
-    } else {
-        dataArray = [self categoryArray];
-    } */
-    
-    // title = [@"" stringByAppendingFormat:@"%@", [[self categoryArray] objectAtIndex:row]];
-    
     return [@"" stringByAppendingFormat:@"%@", [[self categoryArray] objectAtIndex:row]];
 }
 

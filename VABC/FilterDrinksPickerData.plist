@@ -25,11 +25,11 @@
 	<dict>
 		<key>(All Sizes)</key>
 		<string>9999</string>
-		<key>Handle (1.75L)</key>
+		<key>Handle</key>
 		<string>1750</string>
 		<key>1L</key>
 		<string>1000</string>
-		<key>Fifth (750mL)</key>
+		<key>Fifth</key>
 		<string>750</string>
 		<key>375mL</key>
 		<string>375</string>

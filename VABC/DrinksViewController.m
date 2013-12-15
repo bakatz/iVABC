@@ -16,7 +16,6 @@
 @property bool replaceDrinks;
 @property NSInteger startRow;
 @property bool lazyLoadingEnabled;
-//@property NSInteger lastRequestedRow;
 @end
 
 @implementation DrinksViewController
@@ -38,7 +37,6 @@
     self.tblView.dataSource = self;
     
     self.replaceDrinks = true;
-    //self.lastRequestedRow = -1;
     self.startRow = 0;
     self.lazyLoadingEnabled = true;
     
@@ -46,11 +44,9 @@
     self.numMLVal = @"";
     self.categoryVal = @"";
     self.nameVal = @"";
-    // http://bakatz.com/scripts/get_vabc_data.php?type=drinks&limit=100&sort=value_score&num_ml=&category=&name=
-
+    
     self.responseData = [NSMutableData data];
     [self requestDrinksData:@"value_score":nil:nil:nil];
-	// Do any additional setup after loading the view.
 }
 
 - (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name;
@@ -129,8 +125,6 @@
     NSDictionary *cellData = [[self drinksArray] objectAtIndex:[indexPath item]];
     cell.nameLabel.text = [cellData objectForKey:@"name"];
     cell.categoryLabel.text = [[cellData objectForKey:@"category"] capitalizedString];
-    
-    //cell.categoryShortLabel.text = [cell.categoryLabel.text substringToIndex:2];
     cell.priceLabel.text = [NSString stringWithFormat:@"$%@", [cellData objectForKey:@"price"]];
     
     float fullPrice = [[cellData objectForKey:@"full_price"] floatValue];
@@ -191,7 +185,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    // TODO: implement if necessary
+    
+    NSDictionary *cellData = [[self drinksArray] objectAtIndex:[indexPath item]];
+    NSString *drinkNameMessage = [NSString stringWithFormat:@"The full name of the drink you selected is \"%@\"",[cellData objectForKey:@"name"]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Full Name of Drink"
+                                                    message:drinkNameMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 - (IBAction)reloadButtonClicked:(UIBarButtonItem *)sender {
     NSLog(@"reloadButtonClicked");
@@ -238,9 +240,8 @@
         [combinedArr addObjectsFromArray:res];
         
         self.drinksArray = combinedArr;
-        self.replaceDrinks = true; // reset to beginning state so that if a filter call is made directly after this, it doesn't add to the irrelevant data already in the tableview.
+        [self resetParameters];
         scrollToTop = false;
-        self.startRow = 0;
     } else { // case where the data is loaded for the first time, or user updates filters.
         self.drinksArray = res;
     }
@@ -248,8 +249,8 @@
     [[self tblView] reloadData];
     
     if(scrollToTop) {
-        NSLog(@"Scrolling to top!!");
-        // Scroll to top
+        NSLog(@"Scrolling to top.");
+        // Scroll to a 1x1 rectangle at the origin of the screen
         [[self tblView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     }
     self.title = @"VABC Drinks";

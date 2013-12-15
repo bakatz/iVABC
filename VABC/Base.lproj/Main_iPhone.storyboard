@@ -166,7 +166,7 @@
             </objects>
             <point key="canvasLocation" x="1089" y="180"/>
         </scene>
-        <!--Filter Drinks View Controller - Filter-->
+        <!--Filter Drinks View Controller - Filter Drinks-->
         <scene sceneID="OCR-Ob-5sM">
             <objects>
                 <viewController id="Bdx-is-M49" customClass="FilterDrinksViewController" sceneMemberID="viewController">
@@ -186,7 +186,7 @@
                                 </connections>
                             </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Drink name contains..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q6s-92-2VD">
-                                <rect key="frame" x="20" y="98" width="280" height="30"/>
+                                <rect key="frame" x="9" y="98" width="306" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -239,24 +239,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="q6s-92-2VD" secondAttribute="trailing" constant="20" symbolic="YES" id="4eQ-wI-GrI"/>
-                            <constraint firstAttribute="trailing" secondItem="9cE-bP-Lxn" secondAttribute="trailing" constant="5" id="HpR-3q-juG"/>
-                            <constraint firstItem="Bmy-RI-C62" firstAttribute="top" secondItem="WVh-QW-neQ" secondAttribute="bottom" constant="15" id="LLx-8D-ZFJ"/>
-                            <constraint firstItem="Bmy-RI-C62" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="68" id="N6P-SP-mb9"/>
-                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="top" secondItem="Tcu-Wq-Iy8" secondAttribute="bottom" constant="3" id="Ot8-YX-QfZ"/>
-                            <constraint firstItem="WVh-QW-neQ" firstAttribute="leading" secondItem="9cE-bP-Lxn" secondAttribute="leading" id="P7o-Dj-e6Q"/>
-                            <constraint firstItem="q6s-92-2VD" firstAttribute="top" secondItem="Oij-Mb-HPj" secondAttribute="bottom" constant="1" id="Tl6-XE-RS9"/>
-                            <constraint firstItem="Bmy-RI-C62" firstAttribute="centerX" secondItem="q6s-92-2VD" secondAttribute="centerX" id="baK-cx-FWI"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="9" id="fUS-1g-08c"/>
-                            <constraint firstItem="q6s-92-2VD" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="20" symbolic="YES" id="jmC-ub-eEn"/>
-                            <constraint firstItem="WVh-QW-neQ" firstAttribute="top" secondItem="9cE-bP-Lxn" secondAttribute="bottom" constant="8" symbolic="YES" id="l4U-zS-ftC"/>
-                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="94" id="lxA-gb-PYt"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="top" secondItem="q6s-92-2VD" secondAttribute="bottom" constant="8" symbolic="YES" id="mh5-6S-Rol"/>
-                            <constraint firstItem="q6s-92-2VD" firstAttribute="centerX" secondItem="Oij-Mb-HPj" secondAttribute="centerX" id="uFh-hg-Clb"/>
-                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="trailing" secondItem="WVh-QW-neQ" secondAttribute="trailing" id="xiY-uA-kF7"/>
+                            <constraint firstItem="Bmy-RI-C62" firstAttribute="centerX" secondItem="MXl-TO-q8V" secondAttribute="centerX" id="3Sv-1h-0af"/>
+                            <constraint firstItem="Bmy-RI-C62" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="68" id="6JG-bf-ZZ6"/>
+                            <constraint firstItem="q6s-92-2VD" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="9" id="8Z3-hQ-N8a"/>
+                            <constraint firstItem="WVh-QW-neQ" firstAttribute="trailing" secondItem="9cE-bP-Lxn" secondAttribute="trailing" id="Etp-7r-DH3"/>
+                            <constraint firstAttribute="trailing" secondItem="q6s-92-2VD" secondAttribute="trailing" constant="5" id="Mne-lS-k0E"/>
+                            <constraint firstItem="WVh-QW-neQ" firstAttribute="top" secondItem="9cE-bP-Lxn" secondAttribute="bottom" constant="8" symbolic="YES" id="PRS-SB-tLp"/>
+                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="leading" secondItem="MXl-TO-q8V" secondAttribute="leading" constant="94" id="RHo-wO-AoF"/>
+                            <constraint firstItem="q6s-92-2VD" firstAttribute="leading" secondItem="9cE-bP-Lxn" secondAttribute="leading" id="SKX-xd-cIt"/>
+                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="centerX" secondItem="Bmy-RI-C62" secondAttribute="centerX" id="Vxx-rE-SFk"/>
+                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="top" secondItem="q6s-92-2VD" secondAttribute="bottom" constant="8" symbolic="YES" id="a5m-fo-meM"/>
+                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="trailing" secondItem="q6s-92-2VD" secondAttribute="trailing" id="c2f-P9-K26"/>
+                            <constraint firstItem="q6s-92-2VD" firstAttribute="top" secondItem="Oij-Mb-HPj" secondAttribute="bottom" constant="1" id="nu0-Jr-IYw"/>
+                            <constraint firstItem="Oij-Mb-HPj" firstAttribute="top" secondItem="Tcu-Wq-Iy8" secondAttribute="bottom" constant="3" id="qhV-hb-20F"/>
+                            <constraint firstItem="9cE-bP-Lxn" firstAttribute="leading" secondItem="WVh-QW-neQ" secondAttribute="leading" id="rwL-NU-FdA"/>
+                            <constraint firstItem="Bmy-RI-C62" firstAttribute="top" secondItem="WVh-QW-neQ" secondAttribute="bottom" constant="15" id="x8y-sv-hQC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Filter" id="Nco-sc-IBg"/>
+                    <navigationItem key="navigationItem" title="Filter Drinks" id="Nco-sc-IBg"/>
                     <connections>
                         <outlet property="categoryPicker" destination="Bmy-RI-C62" id="uVO-VP-WVB"/>
                         <outlet property="drinkNameText" destination="q6s-92-2VD" id="jZk-il-JFe"/>
