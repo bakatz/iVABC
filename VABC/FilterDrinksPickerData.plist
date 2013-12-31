@@ -25,6 +25,8 @@
 	<dict>
 		<key>(All Sizes)</key>
 		<string>9999</string>
+		<key>2L</key>
+		<string>2000</string>
 		<key>Handle</key>
 		<string>1750</string>
 		<key>1L</key>

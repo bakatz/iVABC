@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *sizeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *abvLabel;
 @property (strong, nonatomic) IBOutlet UILabel *ageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *codeLabel;
 
 @end

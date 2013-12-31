@@ -51,7 +51,12 @@
 }
 
 - (IBAction)textFieldChanged:(UITextField *)sender {
-    [[self delegate] requestDrinksData :nil:nil:nil:[sender text]];
+    if (sender == [self drinkNameText]) {
+        [[self delegate] requestDrinksData :nil:nil:nil:[sender text]];
+    } else {
+        NSLog(@"Inventory code changed");
+    }
+    
 }
 
 - (void)viewDidLoad

@@ -164,6 +164,7 @@
     NSString* formattedValueRating = [NSString stringWithFormat:@"%ld", lroundf([[cellData objectForKey:@"value_score"] floatValue])];
     
     cell.valueRatingLabel.text = formattedValueRating;
+    cell.codeLabel.text = [NSString stringWithFormat:@"#%@", [cellData objectForKey:@"code"]];
     return cell;
 }
 

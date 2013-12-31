@@ -11,7 +11,7 @@
 
 @interface FilterDrinksViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate>
 
-// 6 items
+// 7 items
 @property NSString *sortByStr;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *drinkSortByControl;
 
@@ -23,7 +23,11 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *categoryPicker;
 @property NSString *categoryStr;
 
-// text field at the top
+// text field at the top right
+@property (strong, nonatomic) IBOutlet UITextField *inventoryCodeText;
+@property NSString *inventoryCodeStr;
+
+// text field at the top left
 @property (strong, nonatomic) IBOutlet UITextField *drinkNameText;
 @property NSString *drinkNameStr;
 
