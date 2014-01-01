@@ -44,12 +44,13 @@
     self.numMLVal = @"";
     self.categoryVal = @"";
     self.nameVal = @"";
+    self.inventoryCodeVal = @"";
     
     self.responseData = [NSMutableData data];
-    [self requestDrinksData:@"value_score":nil:nil:nil];
+    [self requestDrinksData:@"value_score":nil:nil:nil:nil];
 }
 
-- (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name;
+- (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name :(NSString *)code;
 {
     self.title = @"VABC Drinks - Loading ...";
     if(sort != nil) {
@@ -72,7 +73,12 @@
         [self resetParameters];
     }
     
-    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&start=%ld&sort=%@&num_ml=%@&category=%@&name=%@", (long)self.startRow, self.sortVal, self.numMLVal, self.categoryVal, self.nameVal];
+    if (code != nil) {
+        self.inventoryCodeVal = code;
+        [self resetParameters];
+    }
+    
+    NSString *urlParams = [NSString stringWithFormat:@"type=drinks&limit=100&start=%ld&sort=%@&num_ml=%@&category=%@&name=%@&code=%@", (long)self.startRow, self.sortVal, self.numMLVal, self.categoryVal, self.nameVal, self.inventoryCodeVal];
     
     NSString *urlToSend = [NSString stringWithFormat:@"%@%@", @"http://bakatz.com/scripts/get_vabc_data.php?", [urlParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
@@ -176,7 +182,7 @@
         }
         self.startRow = [[self drinksArray] count];
         self.replaceDrinks = false;
-        [self requestDrinksData:nil :nil :nil :nil];
+        [self requestDrinksData:nil :nil :nil :nil :nil];
     }
 }
 
@@ -199,7 +205,7 @@
 - (IBAction)reloadButtonClicked:(UIBarButtonItem *)sender {
     NSLog(@"reloadButtonClicked");
     [self resetParameters];
-    [self requestDrinksData:nil :nil :nil :nil];
+    [self requestDrinksData:nil :nil :nil :nil :nil];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -266,6 +272,7 @@
         fdvc.sizeStr = self.numMLVal;
         fdvc.drinkNameStr = self.nameVal;
         fdvc.categoryStr = self.categoryVal;
+        fdvc.inventoryCodeStr = self.inventoryCodeVal;
         fdvc.delegate = self;
     }
 }

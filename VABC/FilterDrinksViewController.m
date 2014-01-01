@@ -40,21 +40,21 @@
         }
         
         NSLog(@"size changed to %@", size);
-        [[self delegate] requestDrinksData :nil:size:nil:nil];
+        [[self delegate] requestDrinksData :nil:size:nil:nil:nil];
     } else {
         NSString *key = [[self sortByArray] objectAtIndex:[sender selectedSegmentIndex]];
         NSDictionary *sortByDictData = [[self sortByDict] objectForKey:key];
         NSString *internalID = [sortByDictData objectForKey:@"id"];
         NSLog(@"sortBy changed to %@", internalID);
-        [[self delegate] requestDrinksData :internalID:nil:nil:nil];
+        [[self delegate] requestDrinksData :internalID:nil:nil:nil:nil];
     }
 }
 
 - (IBAction)textFieldChanged:(UITextField *)sender {
     if (sender == [self drinkNameText]) {
-        [[self delegate] requestDrinksData :nil:nil:nil:[sender text]];
+        [[self delegate] requestDrinksData :nil:nil:nil:[sender text]:nil];
     } else {
-        NSLog(@"Inventory code changed");
+        [[self delegate] requestDrinksData :nil:nil:nil:nil:[sender text]];
     }
     
 }
@@ -161,6 +161,11 @@
         self.drinkNameText.text = self.drinkNameStr;
     }
     
+    if ([self inventoryCodeStr] != nil && [[self inventoryCodeStr] length] > 0) {
+        NSLog(@"Restored inventoryCode");
+        self.inventoryCodeText.text = self.inventoryCodeStr;
+    }
+    
     if(sortByIdx != NSNotFound) {
         NSLog(@"Restored sortBy");
         self.drinkSortByControl.selectedSegmentIndex = sortByIdx;
@@ -182,6 +187,7 @@
 
 - (void)dismissKeyboard {
     [[self drinkNameText] resignFirstResponder];
+    [[self inventoryCodeText] resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -204,11 +210,15 @@
     
     self.drinkNameText.text = @"";
     self.drinkNameStr = @"";
+    
+    self.inventoryCodeText.text = @"";
+    self.inventoryCodeStr = @"";
+    
     self.sortByStr = @"value_score";
     self.categoryStr = @"";
     self.sizeStr = @"";
     
-    [[self delegate] requestDrinksData :self.sortByStr:self.sizeStr:self.categoryStr:self.drinkNameStr];
+    [[self delegate] requestDrinksData :self.sortByStr:self.sizeStr:self.categoryStr:self.drinkNameStr:self.inventoryCodeStr];
     
 }
 
@@ -220,7 +230,7 @@
         category = @"";
     }
     NSLog(@"category changed to %@", category);
-    [[self delegate] requestDrinksData :nil:nil:category:nil];
+    [[self delegate] requestDrinksData :nil:nil:category:nil:nil];
 }
 
 // tell the picker how many rows are available for a given component

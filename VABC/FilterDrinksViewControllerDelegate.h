@@ -7,5 +7,5 @@
 //
 
 @protocol FilterDrinksViewControllerDelegate <NSObject>
-- (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name;
+- (void)requestDrinksData:(NSString *)sort :(NSString *)numML :(NSString *)category :(NSString *)name :(NSString *)code;
 @end

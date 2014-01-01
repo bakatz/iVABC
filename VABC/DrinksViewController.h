@@ -15,4 +15,5 @@
 @property NSString *numMLVal;
 @property NSString *categoryVal;
 @property NSString *nameVal;
+@property NSString *inventoryCodeVal;
 @end
