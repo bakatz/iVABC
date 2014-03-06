@@ -40,7 +40,14 @@
 	</dict>
 	<key>sortByDict</key>
 	<dict>
-		<key>Best Value</key>
+		<key>Review</key>
+		<dict>
+			<key>index</key>
+			<integer>1</integer>
+			<key>id</key>
+			<string>review_score</string>
+		</dict>
+		<key>Value</key>
 		<dict>
 			<key>index</key>
 			<integer>0</integer>
@@ -50,42 +57,42 @@
 		<key>Price</key>
 		<dict>
 			<key>index</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>id</key>
 			<string>price</string>
 		</dict>
 		<key>Size</key>
 		<dict>
 			<key>index</key>
-			<integer>2</integer>
+			<integer>3</integer>
 			<key>id</key>
 			<string>num_ml</string>
 		</dict>
 		<key>ABV</key>
 		<dict>
 			<key>index</key>
-			<integer>4</integer>
+			<integer>5</integer>
 			<key>id</key>
 			<string>abv_pct</string>
 		</dict>
 		<key>Category</key>
 		<dict>
 			<key>index</key>
-			<integer>3</integer>
+			<integer>4</integer>
 			<key>id</key>
 			<string>category</string>
 		</dict>
 		<key>Name</key>
 		<dict>
 			<key>index</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>id</key>
 			<string>name</string>
 		</dict>
 		<key>Age</key>
 		<dict>
 			<key>index</key>
-			<integer>6</integer>
+			<integer>7</integer>
 			<key>id</key>
 			<string>age</string>
 		</dict>

@@ -161,15 +161,37 @@
         cell.fullPriceLabel.hidden = YES;
     }
     
-    
-    cell.sizeLabel.text = [NSString stringWithFormat:@"%ld mL", lroundf([[cellData objectForKey:@"num_ml"] floatValue])];
+    long formattedSize = lroundf([[cellData objectForKey:@"num_ml"] floatValue]);
+
+    if(formattedSize == 1750.0F) {
+        cell.sizeLabel.text = @"Handle";
+    } else if (formattedSize == 750.0F) {
+        cell.sizeLabel.text = @"Fifth";
+    } else if (formattedSize == 1000.0F) {
+        cell.sizeLabel.text = @"1L";
+    } else if (formattedSize == 2000.0F) {
+        cell.sizeLabel.text = @"2L";
+    } else {
+        cell.sizeLabel.text = [NSString stringWithFormat:@"%ldmL", formattedSize];
+    }
     
     NSString* formattedABV = [NSString stringWithFormat:@"%ld%% ABV", lroundf([[cellData objectForKey:@"abv_pct"] floatValue])];
     cell.abvLabel.text = formattedABV;
     
     NSString* formattedValueRating = [NSString stringWithFormat:@"%ld", lroundf([[cellData objectForKey:@"value_score"] floatValue])];
-    
     cell.valueRatingLabel.text = formattedValueRating;
+    
+    long reviewScore = lroundf([[cellData objectForKey:@"review_score"] floatValue]);
+    NSString* formattedReview = nil;
+    if(reviewScore == 0) {
+        cell.reviewLabel.font = [UIFont systemFontOfSize:13];
+        formattedReview = @"N/A";
+    } else {
+        cell.reviewLabel.font = [UIFont systemFontOfSize:18];
+        formattedReview = [NSString stringWithFormat:@"%ld", reviewScore];
+    }
+    
+    cell.reviewLabel.text = formattedReview;
     cell.codeLabel.text = [NSString stringWithFormat:@"#%@", [cellData objectForKey:@"code"]];
     return cell;
 }

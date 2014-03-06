@@ -10,6 +10,7 @@
 
 @interface DrinkCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *valueRatingLabel;
+@property (strong, nonatomic) IBOutlet UILabel *reviewLabel;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *fullPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *priceLabel;
@@ -18,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *abvLabel;
 @property (strong, nonatomic) IBOutlet UILabel *ageLabel;
 @property (strong, nonatomic) IBOutlet UILabel *codeLabel;
+
 
 @end

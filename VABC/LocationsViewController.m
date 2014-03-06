@@ -70,6 +70,8 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:@"http://bakatz.com/scripts/get_vabc_data.php?type=establishments"]];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    self.title = @"VABC Locations - Loading...";
 }
 
 - (void)addLocationsToMap
@@ -90,7 +92,7 @@
         locationMarker.subtitle = [NSString stringWithFormat:@"Tap to view details about VABC Store #%d", ++i];
         [[self mapView] addAnnotation:locationMarker];
     }
-    
+    self.title = @"VABC Locations";
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
