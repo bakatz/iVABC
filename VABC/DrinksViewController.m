@@ -220,8 +220,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *cellData = [[self drinksArray] objectAtIndex:[indexPath item]];
-    NSString *drinkNameMessage = [NSString stringWithFormat:@"The full name of the drink you selected is \"%@.\" Add this drink to the comparison tab?",[cellData objectForKey:@"name"]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add To Comparison"
+    NSString *drinkNameMessage = [NSString stringWithFormat:@"The full name of the drink you selected is \"%@.\" Add this drink to the shopping list?", [cellData objectForKey:@"name"]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add To Shopping List"
                                                     message:drinkNameMessage
                                                    delegate:self
                                           cancelButtonTitle:@"No"
