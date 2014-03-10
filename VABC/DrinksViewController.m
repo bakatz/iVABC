@@ -236,7 +236,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     if([title isEqualToString:@"Yes"]) {
-        NSLog(@"Yes button clicked, add to comparison");
         [[[self appDelegate] shoppingListArray] addObject:[self selectedDrink]];
         self.appDelegate.totalPrice += [[[self selectedDrink] objectForKey:@"price"] doubleValue];
         
