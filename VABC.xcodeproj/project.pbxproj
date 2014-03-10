@@ -28,6 +28,7 @@
 		B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D61831B04700AB0082 /* LocationsViewController.m */; };
 		B57584DA1831B05B00AB0082 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584D91831B05B00AB0082 /* LocationDetailViewController.m */; };
 		B57584DD1831EFFA00AB0082 /* DrinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B57584DC1831EFFA00AB0082 /* DrinkCell.m */; };
+		B5DD78E518C9A42900E6B9AE /* ShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DD78E418C9A42900E6B9AE /* ShoppingListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		B57584D91831B05B00AB0082 /* LocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
 		B57584DB1831EFFA00AB0082 /* DrinkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkCell.h; sourceTree = "<group>"; };
 		B57584DC1831EFFA00AB0082 /* DrinkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkCell.m; sourceTree = "<group>"; };
+		B5DD78E318C9A42900E6B9AE /* ShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListViewController.h; sourceTree = "<group>"; };
+		B5DD78E418C9A42900E6B9AE /* ShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				B55C60A9183B1D4700BEAD79 /* FilterDrinksViewController.m */,
 				B515CD3C1844704E00848622 /* LocationAnnotation.h */,
 				B515CD3D1844704E00848622 /* LocationAnnotation.m */,
+				B5DD78E318C9A42900E6B9AE /* ShoppingListViewController.h */,
+				B5DD78E418C9A42900E6B9AE /* ShoppingListViewController.m */,
 			);
 			path = VABC;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				B515CD3E1844704E00848622 /* LocationAnnotation.m in Sources */,
 				B55C60AA183B1D4700BEAD79 /* FilterDrinksViewController.m in Sources */,
 				B57584D41831B03100AB0082 /* DrinksViewController.m in Sources */,
+				B5DD78E518C9A42900E6B9AE /* ShoppingListViewController.m in Sources */,
 				B57584DD1831EFFA00AB0082 /* DrinkCell.m in Sources */,
 				B57584D71831B04700AB0082 /* LocationsViewController.m in Sources */,
 			);

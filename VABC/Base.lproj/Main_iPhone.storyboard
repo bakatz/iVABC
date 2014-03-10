@@ -17,13 +17,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="zau-Yd-fjw" kind="relationship" relationship="viewControllers" id="9RS-l2-QBf"/>
+                        <segue destination="pkA-dG-QsH" kind="relationship" relationship="viewControllers" id="JBH-gd-vsU"/>
                         <segue destination="Glh-rs-t8h" kind="relationship" relationship="viewControllers" id="Xda-Xz-TVW"/>
                         <segue destination="x63-SV-BrB" kind="relationship" relationship="viewControllers" id="Z7I-wu-Dhj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="180"/>
+            <point key="canvasLocation" x="132" y="188"/>
         </scene>
         <!--Drinks View Controller - VABC Drinks - Loading ...-->
         <scene sceneID="ThY-Ec-eyI">
@@ -473,7 +474,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">VABC stands for Virginia ABC Store Information. This app allows you to select, filter, and search for drinks, as well as to find all ABC store locations in Virginia via the Locations tab. This is not an official Virginia ABC app, nor is this app affiliated with the aforementioned organization. All coding and app icons by Ben Katz (http://bakatz.com). Navigation icons provided by icons8 (http://icons8.com). All drink data is public domain, retrieved from http://www.abc.virginia.gov. The highest drink value score indicates largest volume, highest alcohol content, lowest price. Drink ratings for each bottle are an average score from 2008 to present obtained from two public sources: The Beverage Testing Institute (http://tastings.com) and Wine Enthusiast (http://wineenthusiast.com). N/A indicates that the drink has not been reviewed. Drink value ratings and drink review scores both range from 0 (worst) to 100 (best).</mutableString>
+                                <string key="text">VABC stands for Virginia ABC Store Information. This app allows you to select, filter, and search for drinks, as well as to find all ABC store locations in Virginia via the Locations tab. This is not an official Virginia ABC app, nor is this app affiliated with the aforementioned organization. All coding and app icons by Ben Katz (http://bakatz.com). Navigation icons provided by icons8 (http://icons8.com). All drink data is public domain, retrieved from http://www.abc.virginia.gov. The highest drink value score indicates largest volume, highest alcohol content, lowest price. Drink ratings for each bottle are an average score from 2008 to present obtained from two public sources: The Beverage Testing Institute (http://tastings.com) and Wine Enthusiast (http://wineenthusiast.com). N/A indicates that the drink has not been reviewed. Drink value ratings and drink review scores both range from 0 (worst) to 100 (best).</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
@@ -485,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6F-0Z-pBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-56" y="889"/>
+            <point key="canvasLocation" x="124" y="889"/>
         </scene>
         <!--Navigation Controller - VABC Locations-->
         <scene sceneID="43h-sY-hW2">
@@ -506,11 +507,145 @@
             </objects>
             <point key="canvasLocation" x="563" y="855"/>
         </scene>
+        <!--Shopping List View Controller - Shopping List ($0)-->
+        <scene sceneID="QkV-uT-YWJ">
+            <objects>
+                <tableViewController id="tY9-8s-VPD" customClass="ShoppingListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cai-3e-r9C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="65" id="xb2-9Q-KnT" customClass="DrinkCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="65"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xb2-9Q-KnT" id="SXQ-MO-arI">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="64" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kas-RJ-kdi">
+                                            <rect key="frame" x="13" y="2" width="35" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Odesse Vodka blahhahhhsdhahah" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvx-hh-lbn">
+                                            <rect key="frame" x="50" y="2" width="190" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$1024.99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUT-Jm-2iC">
+                                            <rect key="frame" x="248" y="2" width="72" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vodka" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-Ga-I5w">
+                                            <rect key="frame" x="113" y="20" width="64" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1750 mL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gd-V5-1pg">
+                                            <rect key="frame" x="48" y="20" width="66" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="46% ABV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="At8-66-SiS">
+                                            <rect key="frame" x="48" y="37" width="69" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTC-nw-ESW">
+                                            <rect key="frame" x="-7" y="15" width="61" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNP-SV-c4Q">
+                                            <rect key="frame" x="13" y="31" width="35" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-BY-GaU">
+                                            <rect key="frame" x="0.0" y="42" width="51" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$1025.99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAM-Zf-pFl">
+                                            <rect key="frame" x="248" y="23" width="72" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aged 999 years" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l36-Vl-gRL">
+                                            <rect key="frame" x="113" y="38" width="99" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#11111111" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoB-eA-wV2">
+                                            <rect key="frame" x="248" y="42" width="72" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="abvLabel" destination="At8-66-SiS" id="d9Q-Um-2I2"/>
+                                    <outlet property="ageLabel" destination="l36-Vl-gRL" id="Bh7-Od-Wv7"/>
+                                    <outlet property="categoryLabel" destination="1n8-Ga-I5w" id="J0H-eU-cJ9"/>
+                                    <outlet property="codeLabel" destination="GoB-eA-wV2" id="Ccv-xq-bYW"/>
+                                    <outlet property="fullPriceLabel" destination="cAM-Zf-pFl" id="6du-Xj-NYM"/>
+                                    <outlet property="nameLabel" destination="fvx-hh-lbn" id="vdK-16-dwl"/>
+                                    <outlet property="priceLabel" destination="lUT-Jm-2iC" id="696-ay-mWL"/>
+                                    <outlet property="reviewLabel" destination="xNP-SV-c4Q" id="4Gd-A7-0RI"/>
+                                    <outlet property="sizeLabel" destination="2gd-V5-1pg" id="dsr-p0-0Mc"/>
+                                    <outlet property="valueRatingLabel" destination="kas-RJ-kdi" id="33P-cb-fyH"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Shopping List ($0)" id="fNL-ju-Tqp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n6u-6z-V7X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041" y="1589"/>
+        </scene>
+        <!--Navigation Controller - Shopping List-->
+        <scene sceneID="T16-jd-6T7">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="pkA-dG-QsH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shopping List" image="shoppinglist" id="zMO-Jb-wzl"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j4n-km-IH6">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tY9-8s-VPD" kind="relationship" relationship="rootViewController" id="Rax-Bv-DiH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DWp-uW-8Z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="505" y="1589"/>
+        </scene>
     </scenes>
     <resources>
         <image name="drinks" width="32" height="32"/>
         <image name="info" width="32" height="32"/>
         <image name="locations" width="32" height="32"/>
+        <image name="shoppinglist" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

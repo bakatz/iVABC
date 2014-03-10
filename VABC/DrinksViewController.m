@@ -9,6 +9,7 @@
 #import "DrinksViewController.h"
 #import "FilterDrinksViewController.h"
 #import "DrinkCell.h"
+#import "AppDelegate.h"
 
 @interface DrinksViewController ()
 @property NSArray *drinksArray;
@@ -16,6 +17,8 @@
 @property bool replaceDrinks;
 @property NSInteger startRow;
 @property bool lazyLoadingEnabled;
+@property NSDictionary *selectedDrink;
+@property AppDelegate *appDelegate;
 @end
 
 @implementation DrinksViewController
@@ -32,7 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSLog(@"DRINKS - Added delegate with address: %p", self.appDelegate);
     self.tblView.delegate = self;
     self.tblView.dataSource = self;
     
@@ -216,14 +220,40 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *cellData = [[self drinksArray] objectAtIndex:[indexPath item]];
-    NSString *drinkNameMessage = [NSString stringWithFormat:@"The full name of the drink you selected is \"%@\"",[cellData objectForKey:@"name"]];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Full Name of Drink"
+    NSString *drinkNameMessage = [NSString stringWithFormat:@"The full name of the drink you selected is \"%@.\" Add this drink to the comparison tab?",[cellData objectForKey:@"name"]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add To Comparison"
                                                     message:drinkNameMessage
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    
+
+    
+    self.selectedDrink = cellData;
     [alert show];
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if([title isEqualToString:@"Yes"]) {
+        NSLog(@"Yes button clicked, add to comparison");
+        [[[self appDelegate] shoppingListArray] addObject:[self selectedDrink]];
+        self.appDelegate.totalPrice += [[[self selectedDrink] objectForKey:@"price"] doubleValue];
+        
+        NSString *drinkNameMessage = [NSString stringWithFormat:@"\"%@\" was added to the shopping list.", [[self selectedDrink] objectForKey:@"name"]];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                        message:drinkNameMessage
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        
+        
+        
+        [alert show];
+    }
+}
+
 - (IBAction)reloadButtonClicked:(UIBarButtonItem *)sender {
     NSLog(@"reloadButtonClicked");
     [self resetParameters];
